@@ -38,7 +38,7 @@
         </ul>
         <hr>
         <ul class="menu-aside">
-            <li class="menu-item has-submenu">
+            <li class="menu-item has-submenu {{ request()->routeIs('seller.settings') || request()->routeIs('seller.edit') ? 'active' : '' }}">
                 <a class="menu-link" href="#"> <i class="icon material-icons md-settings"></i>
                     <span class="text">Settings</span>
                 </a>

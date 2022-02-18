@@ -95,7 +95,7 @@
               <!-- Single Settings-->
               <div class="single-settings d-flex align-items-center justify-content-between">
                 <div class="title"><i class="lni lni-question-circle"></i><span>Support</span></div>
-                <div class="data-content"><a href="support.html">Get Help<i class="lni lni-chevron-right"></i></a></div>
+                <div class="data-content"><a href="{{ route('faq') }}">Get Help<i class="lni lni-chevron-right"></i></a></div>
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@
               <!-- Single Settings-->
               <div class="single-settings d-flex align-items-center justify-content-between">
                 <div class="title"><i class="lni lni-protection"></i><span>Privacy Policy</span></div>
-                <div class="data-content"><a href="privacy-policy.html">View<i class="lni lni-chevron-right"></i></a></div>
+                <div class="data-content"><a href="{{ route('terms') }}">View<i class="lni lni-chevron-right"></i></a></div>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@
               <!-- Single Settings-->
               <div class="single-settings d-flex align-items-center justify-content-between">
                 <div class="title"><i class="lni lni-lock"></i><span>Password<span>Updated 1 month ago</span></span></div>
-                <div class="data-content"><a href="change-password.html">Change<i class="lni lni-chevron-right"></i></a></div>
+                <div class="data-content"><a href="{{ route('account.settings') }}">Change<i class="lni lni-chevron-right"></i></a></div>
               </div>
             </div>
           </div>

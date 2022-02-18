@@ -12,10 +12,15 @@ class AdminStatisticsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+     public function index()
+     {
+         return view('admin.statistics.statistics');
+     }
+
+     // public function order()
+     // {
+     //     return view('admin.order.order');
+     // }
 
     /**
      * Store a newly created resource in storage.

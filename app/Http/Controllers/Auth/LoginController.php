@@ -38,6 +38,11 @@ class LoginController extends Controller
     else {
       return redirect()->route('account.dashboard');
     }
-
   }
+
+  public function forgot()
+  {
+    return view('auth.forgot');
+  }
+
 }

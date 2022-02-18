@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Seller;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Merchant;
 
 class AdminSellerController extends Controller
 {
@@ -12,10 +13,22 @@ class AdminSellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+     public function index()
+     {
+       $merchants = Merchant::where('verified', true)->latest()->paginate(10);
+
+       return view('admin.seller.sellers', [
+         'merchants' => $merchants
+       ]);
+     }
+
+     public function seller(Merchant $merchant)
+     {
+         return view('admin.seller.seller', [
+           'merchant' => $merchant,
+           'products' => $merchant->products
+         ]);
+     }
 
     /**
      * Store a newly created resource in storage.

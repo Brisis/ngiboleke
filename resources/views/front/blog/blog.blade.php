@@ -73,94 +73,7 @@
             <h6 class="pt-3">Blog List</h6>
           </div>
           <div class="row g-3">
-            <!-- Single Blog Card-->
-            <div class="col-12 col-md-6">
-              <div class="card blog-card list-card">
-                <!-- Post Image-->
-                <div class="post-img"><img src="{{ asset('static/img/bg-img/12.jpg') }}" alt=""></div>
-                <!-- Post Bookmark--><a class="post-bookmark" href="#"><i class="lni lni-bulb"></i></a>
-                <!-- Read More Button--><a class="btn btn-danger btn-sm read-more-btn" href="{{ route('blog') }}">Read More</a>
-                <!-- Post Content-->
-                <div class="post-content">
-                  <div class="bg-shapes">
-                    <div class="circle1"></div>
-                    <div class="circle2"></div>
-                    <div class="circle3"></div>
-                    <div class="circle4"></div>
-                  </div>
-                  <!-- Post Catagory--><a class="post-catagory d-block" href="#">Review</a>
-                  <!-- Post Title--><a class="post-title d-block" href="{{ route('blog') }}">The 5 best reviews in Suha</a>
-                  <!-- Post Meta-->
-                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Suha</a><span><i class="lni lni-timer"></i>2 min</span></div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Blog Card-->
-            <div class="col-12 col-md-6">
-              <div class="card blog-card list-card">
-                <!-- Post Image-->
-                <div class="post-img"><img src="{{ asset('static/img/bg-img/13.jpg') }}" alt=""></div>
-                <!-- Post Bookmark--><a class="post-bookmark" href="#"><i class="lni lni-bulb"></i></a>
-                <!-- Read More Button--><a class="btn btn-warning btn-sm read-more-btn" href="{{ route('blog') }}">Read for $0.9</a>
-                <!-- Post Content-->
-                <div class="post-content">
-                  <div class="bg-shapes">
-                    <div class="circle1"></div>
-                    <div class="circle2"></div>
-                    <div class="circle3"></div>
-                    <div class="circle4"></div>
-                  </div>
-                  <!-- Post Catagory--><a class="post-catagory d-block" href="#">Shopping</a>
-                  <!-- Post Title--><a class="post-title d-block" href="{{ route('blog') }}">The best deals of this week</a>
-                  <!-- Post Meta-->
-                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Suha</a><span><i class="lni lni-timer"></i>4 min</span></div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Blog Card-->
-            <div class="col-12 col-md-6">
-              <div class="card blog-card list-card">
-                <!-- Post Image-->
-                <div class="post-img"><img src="{{ asset('static/img/bg-img/14.jpg') }}" alt=""></div>
-                <!-- Post Bookmark--><a class="post-bookmark" href="#"><i class="lni lni-bulb"></i></a>
-                <!-- Read More Button--><a class="btn btn-danger btn-sm read-more-btn" href="{{ route('blog') }}">Read More</a>
-                <!-- Post Content-->
-                <div class="post-content">
-                  <div class="bg-shapes">
-                    <div class="circle1"></div>
-                    <div class="circle2"></div>
-                    <div class="circle3"></div>
-                    <div class="circle4"></div>
-                  </div>
-                  <!-- Post Catagory--><a class="post-catagory d-block" href="#">Tips</a>
-                  <!-- Post Title--><a class="post-title d-block" href="{{ route('blog') }}">5 tips for buy original products</a>
-                  <!-- Post Meta-->
-                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Suha</a><span><i class="lni lni-timer"></i>7 min</span></div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Blog Card-->
-            <div class="col-12 col-md-6">
-              <div class="card blog-card list-card">
-                <!-- Post Image-->
-                <div class="post-img"><img src="{{ asset('static/img/bg-img/15.jpg') }}" alt=""></div>
-                <!-- Post Bookmark--><a class="post-bookmark" href="#"><i class="lni lni-bulb"></i></a>
-                <!-- Read More Button--><a class="btn btn-warning btn-sm read-more-btn" href="{{ route('blog') }}">Read for $0.69</a>
-                <!-- Post Content-->
-                <div class="post-content">
-                  <div class="bg-shapes">
-                    <div class="circle1"></div>
-                    <div class="circle2"></div>
-                    <div class="circle3"></div>
-                    <div class="circle4"></div>
-                  </div>
-                  <!-- Post Catagory--><a class="post-catagory d-block" href="#">Offer</a>
-                  <!-- Post Title--><a class="post-title d-block" href="{{ route('blog') }}">Mega Deals: Up to 75% discount</a>
-                  <!-- Post Meta-->
-                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Suha</a><span><i class="lni lni-timer"></i>8 min</span></div>
-                </div>
-              </div>
-            </div>
+
             <!-- Single Blog Card-->
             <div class="col-12 col-md-6">
               <div class="card blog-card list-card">
@@ -179,7 +92,7 @@
                   <!-- Post Catagory--><a class="post-catagory d-block" href="#">Trends</a>
                   <!-- Post Title--><a class="post-title d-block" href="{{ route('blog') }}">Bridal shopping is the latest trends of this month</a>
                   <!-- Post Meta-->
-                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Suha</a><span><i class="lni lni-timer"></i>6 min</span></div>
+                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Ngiboleke</a><span><i class="lni lni-timer"></i>6 min</span></div>
                 </div>
               </div>
             </div>
@@ -201,7 +114,7 @@
                   <!-- Post Catagory--><a class="post-catagory d-block" href="#">News</a>
                   <!-- Post Title--><a class="post-title d-block" href="{{ route('blog') }}">How to easily buy a product</a>
                   <!-- Post Meta-->
-                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Suha</a><span><i class="lni lni-timer"></i>3 min</span></div>
+                  <div class="post-meta d-flex align-items-center justify-content-between flex-wrap"><a href="#"><i class="lni lni-user"></i>Ngiboleke</a><span><i class="lni lni-timer"></i>3 min</span></div>
                 </div>
               </div>
             </div>

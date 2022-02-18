@@ -35,37 +35,18 @@
                     <span class="text">Categories</span>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('admin.locations.*') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.locations.locations') }}"> <i class="icon material-icons md-map"></i>
-                    <span class="text">Locations</span>
-                </a>
-            </li>
-            <li class="menu-item {{ request()->routeIs('admin.orders') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.orders') }}"> <i class="icon material-icons md-shopping_cart"></i>
+            <li class="menu-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('admin.orders.orders') }}"> <i class="icon material-icons md-shopping_cart"></i>
                     <span class="text">Orders</span>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('admin.sellers') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.sellers') }}"> <i class="icon material-icons md-store"></i>
+            <li class="menu-item {{ request()->routeIs('admin.sellers.*') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('admin.sellers.sellers') }}"> <i class="icon material-icons md-store"></i>
                     <span class="text">Sellers</span>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('admin.transactions') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.transactions') }}"> <i class="icon material-icons md-monetization_on"></i>
-                    <span class="text">Transactions</span>
-                </a>
-            </li>
-            <li class="menu-item {{ request()->routeIs('admin.reviews') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.reviews') }}"> <i class="icon material-icons md-comment"></i>
-                    <span class="text">Reviews</span>
-                </a>
-            </li>
-            <li class="menu-item {{ request()->routeIs('admin.brands') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.brands') }}"> <i class="icon material-icons md-stars"></i>
-                    <span class="text">Brands</span> </a>
-            </li>
-            <li class="menu-item {{ request()->routeIs('admin.statistics') ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('admin.statistics') }}"> <i class="icon material-icons md-pie_chart"></i>
+            <li class="menu-item {{ request()->routeIs('admin.statistics.*') ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('admin.statistics.statistics') }}"> <i class="icon material-icons md-pie_chart"></i>
                     <span class="text">Statistics</span>
                 </a>
             </li>

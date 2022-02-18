@@ -9,34 +9,14 @@
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Products</h2>
-                    <p>Ngiboleke Products</p>
                 </div>
                 <div>
-                    <a href="{{ route('seller.products.add') }}" class="btn btn-primary btn-sm rounded">Add new</a>
+                    <a href="{{ route('seller.products.add') }}" class="btn btn-primary"><i class="material-icons md-plus"></i> Add new</a>
                 </div>
             </div>
             <div class="card mb-4">
                 <header class="card-header">
-                    <div class="row gx-3">
-                        <div class="col-lg-4 col-md-6 me-auto">
-                            <input type="text" placeholder="Search..." class="form-control">
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>All category</option>
-                                <option>Electronics</option>
-                                <option>Clothings</option>
-                                <option>Something else</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>Latest added</option>
-                                <option>Cheap first</option>
-                                <option>Most viewed</option>
-                            </select>
-                        </div>
-                    </div>
+                    <h4 class="card-title">My Properties</h4>
                 </header> <!-- card-header end// -->
                 <div class="card-body">
                     <div class="table-responsive">
@@ -64,8 +44,9 @@
                                       @endif
                                     </td>
                                     <td class="text-end">
-                                        <a href="{{ route('seller.products.edit', $product->id) }}" class="btn btn-md rounded font-sm">View Product</a>
-                                        <div class="dropdown">
+                                      <a href="{{ route('seller.products.edit', $product->id) }}" class="btn btn-sm font-sm rounded btn-brand">
+                                          <i class="material-icons md-info"></i> Details
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach

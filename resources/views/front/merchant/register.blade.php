@@ -8,7 +8,6 @@
         <div class="row justify-content-center">
           <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
             <img class="big-logo mb-3" src="{{ asset('static/img/core-img/logo.svg') }}" style="filter: invert(100%);" width="200px;" alt="">
-            <h5 class="mb-3 text-white">Become a seller form</h5>
             <!-- Register Form-->
             @if(session()->has('err_message'))
               <div class="alert alert-warning bg-warning">

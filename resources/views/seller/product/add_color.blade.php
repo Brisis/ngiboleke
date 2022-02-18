@@ -6,12 +6,15 @@
     <main class="main-wrap">
         @include('seller.partials.header')
         <section class="content-main">
+          <div class="content-header">
+              <a href="{{ route('seller.products.edit', $product->id)}}"><i class="material-icons md-arrow_back"></i> Go back </a>
+          </div>
           <form action="{{ route('seller.products.add_color', $product->id) }}" method="post">
             @csrf
             <div class="row">
                 <div class="col-9">
                     <div class="content-header">
-                        <h2 class="content-title">Add New Color /<span class="badge font-sm"><a href="{{ route('seller.products.edit', $product->id)}}">Back</a></span></h2>
+                        <h2 class="content-title">Add New Color</h2>
                         <div>
                             <button type="submit" class="btn btn-md rounded font-sm hover-up">Save Changes</button>
                         </div>

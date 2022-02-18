@@ -7,157 +7,53 @@
         @include('admin.partials.header')
         <section class="content-main">
             <div class="content-header">
-                <h2 class="content-title">Sellers cards</h2>
-                <div>
-                    <a href="#" class="btn btn-primary"><i class="material-icons md-plus"></i> Create new</a>
-                </div>
+                <h2 class="content-title">Sellers</h2>
             </div>
             <div class="card mb-4">
-                <header class="card-header">
-                    <div class="row gx-3">
-                        <div class="col-lg-4 col-md-6 me-auto">
-                            <input type="text" placeholder="Search..." class="form-control">
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>Show 20</option>
-                                <option>Show 30</option>
-                                <option>Show 40</option>
-                                <option>Show all</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>Status: all</option>
-                                <option>Active only</option>
-                                <option>Disabled</option>
-                            </select>
-                        </div>
-                    </div>
-                </header> <!-- card-header end// -->
+              <header class="card-header">
+                  <h4 class="card-title">Ngiboleke Merchants</h4>
+              </header> <!-- card-header end// -->
                 <div class="card-body">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar1.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Mary Sandra</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #409</p>
-                                        <p><template class="__cf_email__" data-cfemail="264b47545f1f1666435e474b564a430845494b">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar2.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Leslie Alexander</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #478</p>
-                                        <p><template class="__cf_email__" data-cfemail="600c05130c0905200518010d100c054e030f0d">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar3.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Leslie Alexander</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #478</p>
-                                        <p><template class="__cf_email__" data-cfemail="3f535a4c53565a7f5a475e524f535a115c5052">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar4.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Floyd Miles</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #171</p>
-                                        <p><template class="__cf_email__" data-cfemail="99fffcfdf6eba8abd9fce1f8f4e9f5fcb7faf6f4">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar1.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">John Alexander</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #987</p>
-                                        <p><template class="__cf_email__" data-cfemail="ec86838482ac8195818d8580c28f8381">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar3.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Albert Flores</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #478</p>
-                                        <p><template class="__cf_email__" data-cfemail="afc3cadcc3c6caefcad7cec2dfc3ca81ccc0c2">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar4.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Leslie Alexander</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #478</p>
-                                        <p><template class="__cf_email__" data-cfemail="731f16001f1a1633160b121e031f165d101c1e">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="col">
-                            <div class="card card-user">
-                                <div class="card-header">
-                                    <img class="img-md img-avatar" src="assets/imgs/people/avatar1.jpg" alt="User pic">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mt-50">Marx Alberto</h5>
-                                    <div class="card-text text-muted">
-                                        <p class="m-0">Seller ID: #478</p>
-                                        <p><template class="__cf_email__" data-cfemail="0f636a7c63666a4f6a776e627f636a216c6062">[email&#160;protected]</template></p>
-                                        <a href="#" class="btn btn-sm btn-brand rounded font-sm mt-15">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                    </div> <!-- row.// -->
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>Merchant ID:</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Inventory</th>
+                                  <th scope="col">Active Status</th>
+                                  <th scope="col">Date Joined</th>
+                                  <th scope="col" class="text-end"> Action </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            @foreach($merchants as $merchant)
+                              <tr>
+                                  <td>#{{ $merchant->id }}</td>
+                                  <td><b>{{ $merchant->name }}</b></td>
+                                  <td>{{ count($merchant->products) }}</td>
+                                  <td>
+                                    @if($merchant->is_active)
+                                      <span class="badge rounded-pill alert-success">Actiated</span>
+                                    @else
+                                      <span class="badge rounded-pill alert-warning">De-Actiated</span>
+                                    @endif
+                                  </td>
+                                  <td>{{ $merchant->created_at->diffForHumans() }}</td>
+                                  <td class="text-end">
+                                    <a href="{{ route('admin.sellers.seller', $merchant) }}" class="btn btn-sm font-sm rounded btn-brand">
+                                        <i class="material-icons md-info"></i> Details
+                                    </a>
+                                    <a href="{{ route('merchants.merchant', $merchant->username) }}" target="_blank" class="btn btn-sm font-sm btn-light rounded">
+                                        <i class="material-icons md-launch"></i> View Live
+                                    </a>
+                                  </td>
+                              </tr>
+                              @endforeach
+                          </tbody>
+                      </table>
+                  </div> <!-- table-responsive //end -->
+
                 </div> <!-- card-body end// -->
             </div> <!-- card end// -->
             <div class="pagination-area mt-15 mb-50">

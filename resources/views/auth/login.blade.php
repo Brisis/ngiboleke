@@ -39,7 +39,7 @@
           </form>
         </div>
         <!-- Login Meta-->
-        <div class="login-meta-data"><a class="forgot-password d-block mt-3 mb-1" href="{{ route('register') }}">Forgot Password?</a>
+        <div class="login-meta-data"><a class="forgot-password d-block mt-3 mb-1" href="{{ route('forgot') }}">Forgot Password?</a>
           <p class="mb-0">Didn't have an account?<a class="ms-1" href="{{ route('register') }}">Register Now</a></p>
         </div>
       </div>

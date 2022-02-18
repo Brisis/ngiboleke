@@ -25,7 +25,6 @@ class CreateMerchantsTable extends Migration
             $table->string('city');
             $table->text('address')->nullable();
             $table->longText('map_iframe')->nullable();
-            $table->string('country_code')->nullable();
             $table->string('phone')->nullable();
             $table->text('video')->nullable();
             $table->boolean('verified')->default(false);

@@ -9,36 +9,12 @@
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Verifications</h2>
-                    <p>Verifications from Merchants & Customers</p>
-                </div>
-                <div>
-                    <input type="text" placeholder="Search by name" class="form-control bg-white">
                 </div>
             </div>
             <div class="card mb-4">
-                <header class="card-header">
-                    <div class="row gx-3">
-                        <div class="col-lg-4 col-md-6 me-auto">
-                            <input type="text" placeholder="Search..." class="form-control" />
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-6">
-                            <select class="form-select">
-                                <option>Status</option>
-                                <option>Active</option>
-                                <option>In-Active</option>
-                                <option>Show all</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-6">
-                            <select class="form-select">
-                                <option>Show 20</option>
-                                <option>Show 30</option>
-                                <option>Show 40</option>
-                            </select>
-                        </div>
-                    </div>
-                </header>
-                <!-- card-header end// -->
+              <header class="card-header">
+                  <h4 class="card-title">Verifications from Merchants & Customers</h4>
+              </header>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -56,14 +32,16 @@
                               @foreach($verifications as $verification)
                                 <tr>
                                     <td>#NGV{{ $verification->id }}</td>
-                                    <td>{{ $verification->user->firstname }} {{ $verification->user->lastname }}</td>
+                                    <td>{{ $verification->user->fullname }}</td>
                                     <td>{{ $verification->email }}</td>
                                     <td>
                                         {{ $verification->purpose }}
                                     </td>
                                     <td>{{ $verification->created_at->diffForHumans() }}</td>
                                     <td class="text-end">
-                                        <a href="{{ route('admin.verifications.verification', $verification->id) }}" class="btn btn-md rounded font-sm">Detail</a>
+                                      <a href="{{ route('admin.verifications.verification', $verification->id) }}" class="btn btn-sm font-sm rounded btn-brand">
+                                          <i class="material-icons md-info"></i> Details
+                                      </a>
                                     </td>
                                 </tr>
                               @endforeach

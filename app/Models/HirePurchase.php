@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductPromotion extends Model
+class HirePurchase extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-      'date_end'
+      'period',
+      'percentage',
+      'policy',
     ];
 
     public function product()

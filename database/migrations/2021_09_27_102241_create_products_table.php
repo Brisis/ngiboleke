@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_bestsellers')->default(false);
             $table->boolean('is_top')->default(false);
+            $table->boolean('is_flashsale')->default(false);
             $table->timestamps();
         });
     }

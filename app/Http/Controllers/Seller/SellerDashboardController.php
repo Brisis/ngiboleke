@@ -47,7 +47,6 @@ class SellerDashboardController extends Controller
 
         $merchant->name = $request->name ? $request->name : $merchant->name;
         $merchant->username = $request->username ? $request->username : $merchant->username;
-        $merchant->country_code = $request->country_code ? $request->country_code : $merchant->country_code;
         $merchant->phone = $request->phone ? $request->phone : $merchant->phone;
         $merchant->country = $request->country ? $request->country : $merchant->country;
         $merchant->city = $request->city ? $request->city : $merchant->city;

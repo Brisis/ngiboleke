@@ -6,12 +6,15 @@
     <main class="main-wrap">
         @include('seller.partials.header')
         <section class="content-main">
+          <div class="content-header">
+              <a href="{{ route('seller.products.edit', $product->id)}}"><i class="material-icons md-arrow_back"></i> Go back </a>
+          </div>
           <form action="{{ route('seller.products.add_image', $product->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-9">
                     <div class="content-header">
-                        <h2 class="content-title">Add Images /<span class="badge font-sm"><a href="{{ route('seller.products.edit', $product->id)}}">Back</a></span></h2>
+                        <h2 class="content-title">Add Images</h2>
                         <div>
                             <button type="submit" class="btn btn-md rounded font-sm hover-up">Add Image</button>
                         </div>

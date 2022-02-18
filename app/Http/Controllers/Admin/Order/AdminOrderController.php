@@ -14,7 +14,12 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.order.orders');
+    }
+
+    public function order()
+    {
+        return view('admin.order.order');
     }
 
     /**

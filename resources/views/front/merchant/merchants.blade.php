@@ -27,7 +27,7 @@
           @foreach($merchants as $merchant)
           <div class="col-12">
             <!-- Single Vendor -->
-            <div class="single-vendor-wrap bg-img p-4 bg-overlay" @if($merchant->merchant_cover) style="background-image: url('{{ asset($merchant->merchant_cover) }}')" @else style="background-image: url('{{ asset('static/img/bg-img/10.jpg') }}')"  @endif>
+            <div class="single-vendor-wrap bg-img p-4 bg-overlay" @if($merchant->merchant_cover) style="background-image: url('{{ asset($merchant->merchant_cover) }}')" @else style="background-image: url('{{ asset('static/img/placeholder-store.jpeg') }}')"  @endif>
               <h5 class="vendor-title text-white">{{ $merchant->name }}</h5>
               <div class="vendor-info">
                 <p class="mb-1 text-white">
@@ -45,9 +45,9 @@
               <div class="vendor-profile shadow">
                 <figure class="m-0">
                   @if($merchant->merchant_logo)
-                    <img src="{{ asset($merchant->merchant_logo) }}" alt="">
+                    <img src="{{ asset($merchant->merchant_logo) }}" class="rounded-circle" alt="">
                   @else
-                    <img src="{{ asset('static/img/ph.jpg') }}" alt="">
+                    <img src="{{ asset('static/img/placeholder-store.png') }}" class="rounded-circle" alt="">
                   @endif
                 </figure>
               </div>

@@ -16,8 +16,8 @@ class IsSellerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || !auth()->user()->is_seller || !auth()->user()->merchant->verified) {
-          return redirect()->route('seller.unverified');
+        if (!auth()->check() || !auth()->user()->is_seller || !auth()->user()->merchant) {
+          abort(403);
         }
 
         return $next($request);

@@ -76,13 +76,13 @@
                 </div>
               </div>
               <div class="account-right">
-                <!-- @if(auth()->user()->is_seller)
-                  <a class="badge badge-warning" href="{{ route('seller.dashboard') }}"><i class="lni lni-cart-full"></i> My Shop</a>
+                @if(auth()->user()->is_seller)
+                  @if(auth()->user()->merchant)
+                    <a class="badge badge-warning" href="{{ route('seller.dashboard') }}"><i class="lni lni-cart"></i> My Shop</a>
                   @else
-                  <a class="badge badge-warning" href="{{ route('create_shop') }}"><i class="lni lni-cart-full"></i> Register Shop</a>
-                @endif -->
-                <!-- Button trigger modal -->
-
+                    <a class="badge badge-warning" href="{{ route('create_shop') }}"><i class="lni lni-cart-full"></i> Register Shop</a>
+                  @endif
+                @endif
               </div>
             </div>
           </div>
@@ -114,14 +114,6 @@
               <div class="single-profile-data d-flex align-items-center justify-content-between">
                 <div class="title d-flex align-items-center"><i class="lni lni-delivery"></i><span>My Orders</span></div>
                 <div class="data-content"><a class="btn btn-success btn-sm" href="{{ route('account.orders') }}">View</a></div>
-              </div>
-              <!-- <div class="single-profile-data d-flex align-items-center justify-content-between">
-                <div class="title d-flex align-items-center"><i class="lni lni-alarm"></i><span>Notifications</span></div>
-                <div class="data-content"><a class="btn btn-success btn-sm" href="{{ route('account.notifications') }}">View</a></div>
-              </div> -->
-              <div class="single-profile-data d-flex align-items-center justify-content-between">
-                <div class="title d-flex align-items-center"><i class="lni lni-heart"></i><span>My Wishlist</span></div>
-                <div class="data-content"><a class="btn btn-success btn-sm" href="{{ route('account.wishlist') }}">View</a></div>
               </div>
               <div class="single-profile-data d-flex align-items-center justify-content-between">
                 <div class="title d-flex align-items-center"><i class="lni lni-power-switch"></i><span>Account</span></div>

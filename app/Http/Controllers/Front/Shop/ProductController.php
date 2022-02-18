@@ -18,10 +18,15 @@ class ProductController extends Controller
 
         $reviews = $product->reviews()->with(['user'])->latest()->paginate(3);
 
-        $related = Product::where('collection_id', $product->collection_id)->latest()->paginate(5);
+        $related = Product::where('collection_id', $product->collection_id)
+        ->where('is_draft', false)
+        ->whereNotIn('id',[$product->id])
+        ->paginate(5);
+
+        $avgRating = $product->reviews->avg('rating');
 
         // $average = $reviews->avg('rating');
-        //
+        //'avgRating' => $avgRating
         //  dd($average);
 
         return view('front.product.product', [
@@ -48,6 +53,22 @@ class ProductController extends Controller
       $request->session()->flash('message', 'Product Review Added.');
 
       return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+      $search = $request->search ? $request->search : 'no search term';
+
+      $products = Product::query()
+        ->where('name', 'LIKE', "%{$search}%")
+        ->orWhere('description', 'LIKE', "%{$search}%")
+        ->get();
+        // ->paginate(10);
+
+      return view('front.product.products', [
+        'products' => $products->where('is_draft', false),
+        'searchQry' => $search
+      ]);
     }
 
     public function destroy($id)

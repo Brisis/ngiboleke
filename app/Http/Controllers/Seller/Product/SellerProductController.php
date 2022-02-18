@@ -213,18 +213,83 @@ class SellerProductController extends Controller
     public function storeRental(Request $request, Product $product)
     {
       $this->validate($request, [
-        'period' => 'required|max:255',
-        'price_per_day' => 'required|numeric'
+        'period' => 'required|numeric',
+        'percentage' => 'required|max:255'
       ]);
 
       $product->rentals()->create([
-        'name' => $request->name ? $request->name : 'Property Rental',
-        'description' => $request->description ? $request->description : 'Ngiboleke Property',
         'period' => $request->period,
-        'price_per_day' => $request->price_per_day,
+        'percentage' => $request->percentage,
+        'policy' => $request->policy ? $request->policy : null,
       ]);
 
       $request->session()->flash('message', 'Product Rental Added.');
+
+      return redirect()->back();
+    }
+
+    public function rentalEdit(Request $request, Product $product)
+    {
+      $this->validate($request, [
+        'period' => 'required|numeric',
+        'percentage' => 'required|max:255'
+      ]);
+
+      $rental = $product->rental;
+
+      $rental->period = $request->period ? $request->period : $rental->period;
+      $rental->percentage = $request->percentage ? $request->percentage : $rental->percentage;
+      $rental->policy = $request->policy ? $request->policy : $rental->policy;
+
+      $rental->save();
+
+      $request->session()->flash('message', 'Product Rental Edited.');
+
+      return redirect()->back();
+    }
+
+    public function addHirePurchase(Product $product)
+    {
+      return view('seller.product.add_hirepurchase', [
+        'product' => $product,
+        'hirepurchase' => $product->hirepurchase
+      ]);
+    }
+
+    public function storeHirePurchase(Request $request, Product $product)
+    {
+      $this->validate($request, [
+        'period' => 'required|numeric',
+        'percentage' => 'required|max:255'
+      ]);
+
+      $product->hirepurchase()->create([
+        'period' => $request->period,
+        'percentage' => $request->percentage,
+        'policy' => $request->policy ? $request->policy : null,
+      ]);
+
+      $request->session()->flash('message', 'Product Hire Purchase Added.');
+
+      return redirect()->back();
+    }
+
+    public function hirePurchaseEdit(Request $request, Product $product)
+    {
+      $this->validate($request, [
+        'period' => 'required|numeric',
+        'percentage' => 'required|max:255'
+      ]);
+
+      $hirepurchase = $product->hirepurchase;
+
+      $hirepurchase->period = $request->period ? $request->period : $hirepurchase->period;
+      $hirepurchase->percentage = $request->percentage ? $request->percentage : $hirepurchase->percentage;
+      $hirepurchase->policy = $request->policy ? $request->policy : $hirepurchase->policy;
+
+      $hirepurchase->save();
+
+      $request->session()->flash('message', 'Product Hire Purchase Edited.');
 
       return redirect()->back();
     }

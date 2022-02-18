@@ -4,7 +4,26 @@
 
 @include('front.partials.topbar')
 
-<div class="page-content-wrapper">
+<!-- Modal -->
+<div class="modal fade" id="addedToCart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Property added to cart!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+        <a type="button" href="{{ route('cart') }}" class="btn btn-primary"><i class="lni lni-cart"></i> Visit Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-content-wrapper" id="app">
   <div class="product-slide-wrapper">
     <!-- Product Slides-->
     <div class="product-slides owl-carousel">
@@ -37,7 +56,9 @@
             @endif
           </p>
         </div>
-        <div class="p-wishlist-share"><a href="javascript:void()" title="Add To Cart"><i class="lni lni-cart-full"></i></a></div>
+        <div class="">
+          <a href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart"  onclick="event.preventDefault();" v-on:click="addToCart('{{ $product->id }}')" class="btn btn-success showAddToCart" title="Add To Cart"><i class="lni lni-cart"></i> Add to cart</a>
+        </div>
       </div>
       <!-- Ratings-->
       @if($product->reviews)
@@ -99,8 +120,8 @@
             @if($product->colors)
               @foreach($product->colors as $color)
                 <!-- Single Radio Input-->
-                <div class="form-check mb-0">
-                  <input class="form-check-input" id="{{ $color->id }}" type="radio" name="{{ $color->color }}" style="background: {{ $color->color }}">
+                <div class="form-check mb-0 mx-2">
+                  <input class="form-check-input ml-3" id="{{ $color->id }}" type="radio" name="{{ $color->color }}" style="background: {{ $color->color }}">
                   <label class="form-check-label" style="font-size:12px;" for="{{ $color->name }}">{{ $color->name }}</label>
                 </div>
               @endforeach
@@ -162,8 +183,6 @@
                 @else
                   <span class="badge rounded-pill badge-success">Sale</span>
                 @endif
-                <!-- Wishlist Button-->
-                <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
                 <!-- Thumbnail -->
                 <a class="product-thumbnail d-block" href="{{ route('product', $r_product->slug) }}">
                   <img class="mb-2" src="{{ asset($r_product->image) }}" alt="">
@@ -183,9 +202,9 @@
                 </a>
                 <!-- Product Price -->
                 <p class="sale-price">
-                  $@money($product->price)
-                  @if($product->discount_percent)
-                  <span>$@money($product->price + (($product->price * $product->discount_percent) / 100) )</span>
+                  $@money($r_product->price)
+                  @if($r_product->discount_percent)
+                  <span>$@money($r_product->price + (($r_product->price * $r_product->discount_percent) / 100) )</span>
                   @endif
                 </p>
                 <!-- Rating -->
@@ -194,7 +213,7 @@
                   <i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i>
                 </div> -->
                 <!-- Add to Cart -->
-                <a class="btn btn-success btn-sm" href="#"><i class="lni lni-cart"></i></a>
+                <a class="btn btn-success btn-sm showAddToCart" href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart" onclick="event.preventDefault();" v-on:click="addToCart('{{ $r_product->id }}')"><i class="lni lni-cart"></i></a>
               </div>
             </div>
           </div>
@@ -274,5 +293,22 @@
 </div>
 
 @include('front.partials.bottomnavbar')
+
+<!-- production version, optimized for size and speed -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        qty: 0
+      },
+      methods: {
+        addToCart: async function (product) {
+          const response = await axios.get(`/add-to-cart/${product}`);
+        }
+      }
+    });
+  </script>
 
 @endsection

@@ -15,11 +15,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Property added to cart.
+          Property added to cart!
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
-          <button type="button" class="btn btn-primary"><i class="lni lni-cart"></i> Visit Cart</button>
+          <a type="button" href="{{ route('cart') }}" class="btn btn-primary"><i class="lni lni-cart"></i> Visit Cart</a>
         </div>
       </div>
     </div>
@@ -35,16 +35,16 @@
               <div class="slide-content h-100 d-flex align-items-center">
                 <div class="slide-text">
                   <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-duration="1000ms">Ngiboleke</h4>
-                  <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">Lease. Sale. Mortgage</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-duration="1000ms">Start Now</a>
+                  <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">Rent. Sale. Hire Purchase</p><a class="btn btn-primary btn-sm" href="/categories/furniture" data-animation="fadeInUp" data-delay="800ms" data-duration="1000ms">Start Now</a>
                 </div>
               </div>
             </div>
             <!-- Single Hero Slide-->
-            <div class="single-hero-slide" style="background-image: url('{{ asset('static/img/bg-img/2.jpeg') }}')">
+            <div class="single-hero-slide" style="background-image: url('{{ asset('static/img/bg-img/6.jpeg') }}')">
               <div class="slide-content h-100 d-flex align-items-center">
                 <div class="slide-text">
-                  <h4 class="text-success mb-0" data-animation="fadeInUp" data-delay="100ms" data-duration="1000ms">Ngiboleke</h4>
-                  <p class="text-success" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">Lease. Sale. Mortgage</p><a class="btn btn-success btn-sm" href="#" data-animation="fadeInUp" data-delay="500ms" data-duration="1000ms">Start Now</a>
+                  <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-duration="1000ms">Ngiboleke</h4>
+                  <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">Rent. Sale. Hire Purchase</p><a class="btn btn-success btn-sm" href="/categories/electronics" data-animation="fadeInUp" data-delay="500ms" data-duration="1000ms">Start Now</a>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
               <div class="slide-content h-100 d-flex align-items-center">
                 <div class="slide-text">
                   <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-duration="1000ms">Ngiboleke</h4>
-                  <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">Lease. Sale. Mortgage</p><a class="btn btn-danger btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-duration="1000ms">Start Now</a>
+                  <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">Rent. Sale. Hire Purchase</p><a class="btn btn-danger btn-sm" href="/categories/garden-tools" data-animation="fadeInUp" data-delay="800ms" data-duration="1000ms">Start Now</a>
                 </div>
               </div>
             </div>
@@ -92,28 +92,28 @@
             <h6 class="me-1 d-flex align-items-center">
               <svg class="bi bi-lightning me-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z"></path>
-              </svg>Ngiboleke Promotions
+              </svg>Ngiboleke Flash Sale
             </h6>
             <!-- Please use event time this format: YYYY/MM/DD hh:mm:ss -->
-            <!--<ul class="sales-end-timer ps-0 d-flex align-items-center" data-countdown="2022/01/01 14:21:37">
+            <ul class="sales-end-timer ps-0 d-flex align-items-center" data-countdown="2022/03/01 14:21:37">
               <li><span class="days">0</span>d</li>
               <li><span class="hours">0</span>h</li>
               <li><span class="minutes">0</span>m</li>
               <li><span class="seconds">0</span>s</li>
-            </ul>-->
+            </ul>
           </div>
           <!-- Flash Sale Slide-->
           <div class="flash-sale-slide owl-carousel">
-            @foreach($promotions as $promotion)
+            @foreach($flashsales as $flashsale)
             <!-- Single Flash Sale Card-->
             <div class="card flash-sale-card">
               <div class="card-body">
-                <a href="{{ route('product', $promotion->product->slug) }}">
-                <img src="{{ asset($promotion->product->image) }}" alt=""><span class="product-title">{{ Str::limit($promotion->product->name, 20) }}</span>
+                <a href="{{ route('product', $flashsale->slug) }}">
+                <img src="{{ asset($flashsale->image) }}" alt=""><span class="product-title">{{ Str::limit($flashsale->name, 20) }}</span>
                   <p class="sale-price">
-                    $@money($promotion->product->price)
-                    @if($promotion->product->discount_percent)
-                      <span class="real-price">$@money($promotion->product->price + (($promotion->product->price * $promotion->product->discount_percent) / 100) )</span>
+                    $@money($flashsale->price)
+                    @if($flashsale->discount_percent)
+                      <span class="real-price">$@money($flashsale->price + (($flashsale->price * $flashsale->discount_percent) / 100) )</span>
                     @endif
                   </p>
                   <span class="progress-title">33% Sold Out</span>
@@ -132,7 +132,7 @@
       <div class="top-products-area py-3">
         <div class="container">
           <div class="section-heading d-flex align-items-center justify-content-between">
-            <h6>Top Properties</h6><a class="btn" href="shop-grid.html">View All</a>
+            <h6>Top Properties</h6><a class="btn" href="">View All</a>
           </div>
           <div class="row g-3">
             @foreach($top_products as $top_product)
@@ -146,8 +146,6 @@
                   @else
                     <span class="badge rounded-pill badge-success">Sale</span>
                   @endif
-                  <!-- Wishlist Button-->
-                  <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
                   <!-- Thumbnail -->
                   <a class="product-thumbnail d-block" href="{{ route('product', $top_product->slug) }}">
                     <img class="mb-2" src="{{ asset($top_product->image) }}" alt="">
@@ -178,7 +176,7 @@
                     <i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i>
                   </div> -->
                   <!-- Add to Cart -->
-                  <a class="btn btn-success btn-sm showAddToCart" href="#" data-bs-toggle="modal" data-bs-target="#addedToCart" onclick="event.preventDefault();" v-on:click="addToCart('{{ $top_product->id }}')"><i class="lni lni-cart"></i></a>
+                  <a class="btn btn-success btn-sm showAddToCart" href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart" onclick="event.preventDefault();" v-on:click="addToCart('{{ $top_product->id }}')"><i class="lni lni-cart"></i></a>
                 </div>
               </div>
             </div>
@@ -189,9 +187,9 @@
       <!-- Cool Facts Area-->
       <div class="cta-area">
         <div class="container">
-          <div class="cta-text p-4 p-lg-5" style="background-image: url({{ asset('static/img/bg-img/24.jpg') }})">
+          <div class="cta-text p-4 p-lg-5" style="background-image: url({{ asset('static/img/placeholder-store.jpeg') }})">
             <h4 class="text-white">Property Merchants</h4>
-            <p class="text-white">Ngiboleke offers a platform to Businesses &amp; <br>Individual Property Sellers and Mortgagers</p><a class="btn btn-warning" href="{{ route('merchants.merchants') }}">Explore More</a>
+            <p class="text-white">Ngiboleke offers a platform to Businesses &amp; <br>Individual Property Sellers</p><a class="btn btn-warning" href="{{ route('merchants.merchants') }}">Explore More</a>
           </div>
         </div>
       </div>
@@ -199,7 +197,7 @@
       <div class="weekly-best-seller-area py-3">
         <div class="container">
           <div class="section-heading d-flex align-items-center justify-content-between">
-            <h6>Weekly Best Sellers</h6><a class="btn" href="shop-list.html">View All</a>
+            <h6>Weekly Best Sellers</h6><a class="btn" href="">View All</a>
           </div>
           <div class="row g-3">
             @foreach($weekly_products as $weekly_product)
@@ -214,8 +212,6 @@
                     @else
                       <span class="badge badge-success">Sale</span>
                     @endif
-                    <!-- Wishlist Button -->
-                    <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
                     <!-- Thumbnail -->
                     <a class="product-thumbnail d-block" href="{{ route('product', $weekly_product->slug) }}">
                       <img src="{{ asset($weekly_product->image) }}" alt="">
@@ -235,7 +231,7 @@
                     <!-- Rating -->
                     @if($weekly_product->reviews) <div class="product-rating"><i class="lni lni-star-filled"></i>{{ number_format($weekly_product->reviews()->avg('rating'), 2) }} ({{ count($weekly_product->reviews) }})</div>@endif
                     <!-- Buy Now Button -->
-                    <a class="btn btn-success btn-sm showAddToCart" href="#" data-bs-toggle="modal" data-bs-target="#addedToCart"  onclick="event.preventDefault();" v-on:click="addToCart('{{ $weekly_product->id }}')"><i class="me-1 lni lni-cart"></i>Add to Cart</a>
+                    <a class="btn btn-success btn-sm showAddToCart" href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart"  onclick="event.preventDefault();" v-on:click="addToCart('{{ $weekly_product->id }}')"><i class="me-1 lni lni-cart"></i>Add to Cart</a>
                   </div>
                 </div>
               </div>
@@ -259,7 +255,7 @@
       <div class="featured-products-wrapper py-3">
         <div class="container">
           <div class="section-heading d-flex align-items-center justify-content-between">
-            <h6>Featured Property</h6><a class="btn" href="featured-products.html">View All</a>
+            <h6>Featured Property</h6><a class="btn" href="">View All</a>
           </div>
           <div class="row g-3">
             @foreach($featured_products as $featured_product)
@@ -270,8 +266,6 @@
                   <!-- Badge-->
                   <span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
                   <div class="product-thumbnail-side">
-                    <!-- Wishlist Button -->
-                    <a class="wishlist-btn shadow-sm border" href="#"><i class="lni lni-heart"></i></a>
                     <!-- Thumbnail -->
                     <a class="product-thumbnail d-block" href="{{ route('product', $featured_product->slug) }}">
                       <img src="{{ asset($featured_product->image) }}" alt="">
@@ -281,7 +275,7 @@
                     <!-- Product Title -->
                     <a class="product-title d-block" href="{{ route('product', $featured_product->slug) }}">{{ Str::limit($featured_product->name, 20) }}</a>
                     <!-- Price -->
-                    <p class="sale-price">
+                    <p class="sale-price mb-2">
                       $@money($featured_product->price)
                       @if($featured_product->discount_percent)
                       <span>$@money($featured_product->price + (($featured_product->price * $featured_product->discount_percent) / 100) )</span>
@@ -297,7 +291,7 @@
       </div>
       <div class="container">
         <div class="section-heading d-flex align-items-center justify-content-between">
-          <h6>Collections</h6><a class="btn" href="#">View All</a>
+          <h6>Collections</h6><a class="btn" href="{{ route('collections') }}">View All</a>
         </div>
         <!-- Collection Slide-->
         <div class="collection-slide owl-carousel">

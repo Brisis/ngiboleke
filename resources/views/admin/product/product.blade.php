@@ -113,93 +113,18 @@
                         </div>
                     </div> <!-- card end// -->
                 </div>
-                <!-- -->
-                <div class="col-lg-9">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Inventory</h4>
-                        </div>
-                        <div class="card-body">
-                          @if($product->inventories)
-                            <div class="mb-4">
-                                <label for="product_name" class="form-label">Quantity</label>
-                                <input type="text" placeholder="Type here" class="form-control" id="product_name" disabled value="{{ $product->inventories->stock }}">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label">Status</label>
-                                @if($product->inventories->active)
-                                  <input type="text" class="form-control" id="collection" disabled value="Active">
-                                @else
-                                  <input type="text" class="form-control" id="collection" disabled value="In-Active">
-                                @endif
-                            </div>
-                          @else
-                            <p>Stock Details N/A</p>
-                          @endif
-                        </div>
-                    </div> <!-- card end// -->
-                </div>
-                <!-- -->
-                <div class="col-lg-9">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Discounts</h4>
-                        </div>
-                        <div class="card-body">
-                          @if($product->discounts)
-                            <div class="mb-4">
-                                <label for="product_name" class="form-label">Discount Name</label>
-                                <input type="text" placeholder="Type here" class="form-control" id="product_name" disabled value="{{ $product->discounts->name }}">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-4">
-                                        <label class="form-label">Percentage</label>
-                                        <div class="row gx-2">
-                                            <input placeholder="$" type="text" class="form-control" disabled value="{{ $product->discounts->discount_percent }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-4">
-                                        <label class="form-label">Status</label>
-                                        @if($product->discounts->active)
-                                          <input type="text" class="form-control" disabled value="Active">
-                                        @else
-                                          <input type="text" class="form-control" disabled value="In-Active">
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            @else
-                              <p>Stock Details N/A</p>
-                            @endif
-                        </div>
-                    </div> <!-- card end// -->
-                </div>
-                <!-- -->
-                <div class="col-lg-9">
-                    <div class="card mb-4">
 
+                <div class="col-lg-9">
+                    <div class="card mb-4">
                         <header class="card-header">
                             <div class="row gx-3">
-                              <div class="col-12 mb-4">
+                              <div class="col-12">
                                   <h4>Colors</h4>
                               </div>
-                                <div class="col-lg-6 col-md-6 me-auto">
-                                    <input type="text" placeholder="Search..." class="form-control">
-                                </div>
-                                <div class="col-lg-2 col-6 col-md-3">
-                                    <select class="form-select">
-                                        <option>Show 20</option>
-                                        <option>Show 30</option>
-                                        <option>Show 40</option>
-                                    </select>
-                                </div>
                             </div>
                         </header> <!-- card-header end// -->
                         <div class="card-body">
-                          @if($product->colors)
+                          @if(count($product->colors) >= 1)
                           <div class="table-responsive">
                               <table class="table table-hover">
                                   <thead>
@@ -231,51 +156,12 @@
                               </table>
                           </div> <!-- table-responsive //end -->
                           @else
-                            <p>Color Details N/A</p>
+                            <p>No colors added</p>
                           @endif
                         </div>
                     </div> <!-- card end// -->
                 </div>
-                <!-- -->
-                <div class="col-lg-9">
-                    <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between">
-                            <h4>Promotion</h4>
-                            <a class="btn btn-md rounded font-sm" href="">Add Feature</a>
-                        </div>
-                        <div class="card-body">
-                          @if($product->promotions)
-                            <div class="mb-4">
-                                <label for="product_name" class="form-label">Promo Name</label>
-                                <input type="text" placeholder="Type here" class="form-control" id="product_name" disabled value="{{ $product->promotions->name }}">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-4">
-                                        <label class="form-label">Ending Date</label>
-                                        <div class="row gx-2">
-                                            <input placeholder="$" type="text" class="form-control" disabled value="{{ $product->promotions->date_end }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-4">
-                                        <label class="form-label">Feature Status</label>
-                                        @if($product->promotions->featured)
-                                          <input type="text" class="form-control" disabled value="Active">
-                                        @else
-                                          <input type="text" class="form-control" disabled value="In-Active">
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            @else
-                              <p>Promotion Details N/A</p>
-                            @endif
-                        </div>
-                    </div> <!-- card end// -->
-                </div>
-                <!-- -->
+
                 <div class="col-lg-9">
                     <div class="card mb-4">
                         <div class="card-header">
@@ -308,7 +194,7 @@
                                 </div>
                             </div>
                             @else
-                              <p>Rental Details N/A</p>
+                              <p>Property not rented.</p>
                             @endif
                         </div>
                     </div> <!-- card end// -->

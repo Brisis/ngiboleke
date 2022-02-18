@@ -35,7 +35,7 @@
               <div class="col-6 col-md-4 col-lg-3">
                 <!-- Collection Card-->
                 <div class="card collection-card"><a href="{{ route('collection', $collection->slug) }}">
-                  <img src="{{ asset($collection->picture ) }}" alt=""></a>
+                  <img src="{{ asset($collection->picture) }}" alt=""></a>
                   <div class="collection-title"><span>{{ $collection->name }}</span><span>{{ count($collection->products) }} new items</span></div>
                 </div>
               </div>

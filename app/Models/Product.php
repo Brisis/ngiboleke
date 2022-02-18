@@ -47,9 +47,9 @@ class Product extends Model
       return $this->hasOne(ProductRental::class);
     }
 
-    public function promotions()
+    public function hirepurchase()
     {
-      return $this->hasOne(ProductPromotion::class);
+      return $this->hasOne(HirePurchase::class);
     }
 
     public function colors()

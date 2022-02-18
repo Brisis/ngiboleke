@@ -24,7 +24,7 @@ class HomeController extends Controller
         $weekly_products = $products->paginate(4);
         $featured_products = $products->paginate(4);
 
-        $promotions = ProductPromotion::latest()->with(['product'])->paginate(8);
+        $flashsales = $products->paginate(8);
         $categories = Category::latest()->paginate(6);
         $collections = Collection::latest()->paginate(10);
 
@@ -32,7 +32,7 @@ class HomeController extends Controller
           'top_products' => $top_products,
           'weekly_products' => $weekly_products,
           'featured_products' => $featured_products,
-          'promotions' => $promotions,
+          'flashsales' => $flashsales,
           'categories' => $categories,
           'collections' => $collections
         ]);

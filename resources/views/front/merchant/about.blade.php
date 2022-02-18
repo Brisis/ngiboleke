@@ -12,7 +12,7 @@
             </svg></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-          <h6 class="mb-0">Merchant Shop</h6>
+          <h6 class="mb-0">Merchant Profile</h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#suhaOffcanvas" aria-controls="suhaOffcanvas"><span></span><span></span><span></span></div>
@@ -23,7 +23,7 @@
 
     <div class="page-content-wrapper pb-3">
       <!-- Vendor Details Wrap -->
-      <div class="vendor-details-wrap bg-img bg-overlay py-4" @if($merchant->merchant_cover) style="background-image: url('{{ asset($merchant->merchant_cover) }}')" @else style="background-image: url('{{ asset('static/img/bg-img/12.jpg') }}')"  @endif>
+      <div class="vendor-details-wrap bg-img bg-overlay py-4" @if($merchant->merchant_cover) style="background-image: url('{{ asset($merchant->merchant_cover) }}')" @else style="background-image: url('{{ asset('static/img/placeholder-store.jpeg') }}')"  @endif>
         <div class="container">
           <div class="d-flex align-items-start">
             <!-- Vendor Profile-->
@@ -32,7 +32,7 @@
                 @if($merchant->merchant_logo)
                   <img src="{{ asset($merchant->merchant_logo) }}" alt="">
                 @else
-                  <img src="{{ asset('static/img/ph.jpg') }}" alt="">
+                  <img src="{{ asset('static/img/placeholder-store.png') }}" alt="">
                 @endif
               </figure>
             </div>
@@ -103,25 +103,21 @@
                   {{ $merchant->description }}
                 </div>
 
-                <h6 class="my-3">Introduction Video</h6>
                 @if($merchant->video)
+                  <h6 class="my-3">Introduction Video</h6>
                   <iframe src="" width="100%" height="250px"></iframe>
-                @else
-                  <p>Not Available</p>
                 @endif
 
-                <h6 class="my-3">Map</h6>
                 @if($merchant->map_iframe)
+                  <h6 class="my-3">Map</h6>
                   <iframe src="" width="100%;" height="300px"></iframe>
-                @else
-                  <p>Not Available</p>
                 @endif
 
                 <h6>Need Help from Us?</h6>
-                <p>Phone: {{ $merchant->country_code }} {{ $merchant->phone }} </p>
+                <p>Phone: {{ $merchant->phone }} </p>
                 <p>Street Address: {{ $merchant->address }}</p>
                 <div class="contact-btn-wrap text-center">
-                  <p class="mb-2">For more information, submit a request.</p><a class="btn btn-primary w-100" href="contact.html"><i class="lni lni-life-ring me-2"></i>Submit A Query</a>
+                  <p class="mb-2">For more information, submit a request.</p><a class="btn btn-primary w-100" href="#!"><i class="lni lni-life-ring me-2"></i>Submit A Query</a>
                 </div>
               </div>
             </div>

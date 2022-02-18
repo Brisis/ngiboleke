@@ -2,6 +2,25 @@
 
 @section('content')
 
+    <!-- Modal -->
+    <div class="modal fade" id="addedToCart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Property added to cart!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+            <a type="button" href="{{ route('cart') }}" class="btn btn-primary"><i class="lni lni-cart"></i> Visit Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Header Area-->
     <div class="header-area" id="headerArea">
       <div class="container h-100 d-flex align-items-center justify-content-between">
@@ -21,30 +40,31 @@
 
     @include('front.partials.aside')
 
-    <div class="page-content-wrapper">
+    <div class="page-content-wrapper" id="app">
       <!-- Top Products-->
       <div class="top-products-area py-3">
         <div class="container">
           <div class="section-heading d-flex align-items-center justify-content-between">
-            <h6>Collection Properties ({{ count($collection->products) }})</h6>
+            <h6>Properties ({{ count($collection->products) }})</h6>
             <!-- Select Product Catagory-->
-            <div class="select-product-catagory">
-              <select class="form-select" id="selectProductCatagory" name="selectProductCatagory" aria-label="Default select example">
-                <option selected>Short by</option>
-                <option value="1">Newest</option>
-                <option value="2">Popular</option>
-                <option value="3">Ratings</option>
-              </select>
+            <div class="select-product-catagory top-search-form">
+              <form >
+                <input class="form-control" type="search" placeholder="Enter your keyword">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
             </div>
           </div>
           <div class="product-catagories">
             <div class="row g-3">
+              @foreach($collections as $related)
               <!-- Single Catagory-->
-              <div class="col-4"><a class="shadow-sm" href="#"><img src="img/product/5.png" alt="">Furniture</a></div>
-              <!-- Single Catagory-->
-              <div class="col-4"><a class="shadow-sm" href="#"><img src="img/product/9.png" alt="">Shoes</a></div>
-              <!-- Single Catagory-->
-              <div class="col-4"><a class="shadow-sm" href="#"><img src="img/product/4.png" alt="">Dress</a></div>
+              <div class="col-4">
+                <a class="shadow-sm" href="{{ route('collection', $related->slug) }}">
+                  <img src="{{ asset($related->picture) }}" class="rounded" alt="">
+                  {{ $related->name }}
+                </a>
+              </div>
+              @endforeach
             </div>
           </div>
           <div class="row g-3">
@@ -59,8 +79,7 @@
                   @else
                     <span class="badge rounded-pill badge-success">Sale</span>
                   @endif
-                  <!-- Wishlist Button-->
-                  <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
+
                   <!-- Thumbnail -->
                   <a class="product-thumbnail d-block" href="{{ route('product', $product->slug) }}">
                     <img class="mb-2" src="{{ asset($product->image) }}" alt="Picture">
@@ -89,7 +108,7 @@
                     <i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i>
                   </div> -->
                   <!-- Add to Cart -->
-                  <a class="btn btn-success btn-sm" href="#"><i class="lni lni-cart"></i></a>
+                  <a class="btn btn-success btn-sm showAddToCart" href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart" onclick="event.preventDefault();" v-on:click="addToCart('{{ $product->id }}')"><i class="lni lni-cart"></i></a>
                 </div>
               </div>
             </div>
@@ -101,5 +120,21 @@
     </div>
 
     @include('front.partials.bottomnavbar')
+    <!-- production version, optimized for size and speed -->
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+      <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            qty: 0
+          },
+          methods: {
+            addToCart: async function (product) {
+              const response = await axios.get(`/add-to-cart/${product}`);
+            }
+          }
+        });
+      </script>
 
     @endsection

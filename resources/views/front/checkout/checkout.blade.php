@@ -21,6 +21,15 @@
 
     @include('front.partials.aside')
 
+    <div>
+      <?php $total = 0;?>
+       @if(session('cart'))
+           @foreach(session('cart') as $id => $details)
+               <?php $total += $details['price'] * $details['quantity'] ?>
+           @endforeach
+       @endif
+    </div>
+
     <div class="page-content-wrapper">
       <div class="container">
         <!-- Checkout Wrapper-->
@@ -36,21 +45,21 @@
               <div class="card-body">
                 <div class="single-profile-data d-flex align-items-center justify-content-between">
                   <div class="title d-flex align-items-center"><i class="lni lni-user"></i><span>Full Name</span></div>
-                  <div class="data-content">SUHA JANNAT</div>
+                  <div class="data-content">{{ auth()->user()->fullname }}</div>
                 </div>
                 <div class="single-profile-data d-flex align-items-center justify-content-between">
                   <div class="title d-flex align-items-center"><i class="lni lni-envelope"></i><span>Email Address</span></div>
-                  <div class="data-content">care@example.com</div>
+                  <div class="data-content">{{ auth()->user()->email }}</div>
                 </div>
                 <div class="single-profile-data d-flex align-items-center justify-content-between">
                   <div class="title d-flex align-items-center"><i class="lni lni-phone"></i><span>Phone</span></div>
-                  <div class="data-content">+880 000 111 222</div>
+                  <div class="data-content">{{ auth()->user()->addresses->phone }}</div>
                 </div>
                 <div class="single-profile-data d-flex align-items-center justify-content-between">
                   <div class="title d-flex align-items-center"><i class="lni lni-map-marker"></i><span>Shipping Address</span></div>
-                  <div class="data-content">28/C Green Road, BD</div>
+                  <div class="data-content">{{ auth()->user()->addresses->shipping }}</div>
                 </div>
-                <!-- Edit Address--><a class="btn btn-danger w-100" href="edit-profile.html">Edit Billing Information</a>
+                <!-- Edit Address--><a class="btn btn-danger w-100" href="{{ route('account.edit_address') }}">Edit Billing Information</a>
               </div>
             </div>
           </div>
@@ -88,7 +97,8 @@
           <!-- Cart Amount Area-->
           <div class="card cart-amount-area">
             <div class="card-body d-flex align-items-center justify-content-between">
-              <h5 class="total-price mb-0">$<span class="counter">39.84</span></h5><a class="btn btn-warning" href="checkout-payment.html">Confirm &amp; Pay</a>
+              <h5 class="total-price mb-0">$@money($total)</h5>
+              <a class="btn btn-warning" href="{{ route('payment') }}">Confirm &amp; Pay</a>
             </div>
           </div>
         </div>

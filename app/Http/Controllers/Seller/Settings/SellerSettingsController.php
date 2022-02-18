@@ -14,7 +14,7 @@ class SellerSettingsController extends Controller
      */
     public function index()
     {
-        //
+        return view('seller.settings.settings');
     }
 
     /**

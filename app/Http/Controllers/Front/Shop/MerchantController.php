@@ -28,7 +28,7 @@ class MerchantController extends Controller
         if ($merchant->verified) {
           return view('front.merchant.merchant', [
             'merchant' => $merchant,
-            'products' => $merchant->products
+            'products' => $merchant->products->where('is_draft', false)
           ]);
         }
 

@@ -16,10 +16,9 @@ class CreateProductRentalsTable extends Migration
         Schema::create('product_rentals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
             $table->string('period');
-            $table->double('price_per_day');
+            $table->double('percentage');
+            $table->text('policy')->nullable();
             $table->timestamps();
         });
     }

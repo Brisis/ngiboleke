@@ -12,7 +12,7 @@
             </svg></a></div>
         <!-- Page Title-->
         <div class="page-heading">
-          <h6 class="mb-0">Merchant Shop</h6>
+          <h6 class="mb-0">Merchant Reviews</h6>
         </div>
         <!-- Navbar Toggler-->
         <div class="suha-navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#suhaOffcanvas" aria-controls="suhaOffcanvas"><span></span><span></span><span></span></div>
@@ -23,7 +23,7 @@
 
     <div class="page-content-wrapper pb-3">
       <!-- Vendor Details Wrap -->
-      <div class="vendor-details-wrap bg-img bg-overlay py-4" @if($merchant->merchant_cover) style="background-image: url('{{ asset($merchant->merchant_cover) }}')" @else style="background-image: url('{{ asset('static/img/bg-img/12.jpg') }}')"  @endif>
+      <div class="vendor-details-wrap bg-img bg-overlay py-4" @if($merchant->merchant_cover) style="background-image: url('{{ asset($merchant->merchant_cover) }}')" @else style="background-image: url('{{ asset('static/img/placeholder-store.jpeg') }}')"  @endif>
         <div class="container">
           <div class="d-flex align-items-start">
             <!-- Vendor Profile-->
@@ -32,7 +32,7 @@
                 @if($merchant->merchant_logo)
                   <img src="{{ asset($merchant->merchant_logo) }}" alt="">
                 @else
-                  <img src="{{ asset('static/img/ph.jpg') }}" alt="">
+                  <img src="{{ asset('static/img/placeholder-store.png') }}" alt="">
                 @endif
               </figure>
             </div>

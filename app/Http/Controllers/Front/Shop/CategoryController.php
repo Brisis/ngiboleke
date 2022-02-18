@@ -45,9 +45,14 @@ class CategoryController extends Controller
 
     public function collection(Collection $collection)
     {
+        $collections = Collection::where('category_id', $collection->category_id)
+        ->whereNotIn('id',[$collection->id])
+        ->paginate(3);
+
         return view('front.category.collection', [
           'collection' => $collection,
-          'products' => $collection->products
+          'products' => $collection->products,
+          'collections' => $collections
         ]);
     }
 

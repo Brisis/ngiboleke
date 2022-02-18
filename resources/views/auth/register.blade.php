@@ -36,7 +36,7 @@
             </div>
             <!-- Login Meta-->
             <div class="login-meta-data">
-              <p class="mb-2">I Agree with Ngiboleke's  <a class="ms-1" href="{{ route('login') }}">TC's</a></p>
+              <p class="mb-2">I Agree with Ngiboleke's  <a class="ms-1" href="{{ route('terms') }}">TC's</a></p>
             </div>
             <button class="btn btn-warning btn-lg w-100" type="submit">Sign Up</button>
           </form>

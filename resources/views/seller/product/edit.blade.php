@@ -162,23 +162,12 @@
 
                 <div class="col-lg-9">
                     <div class="card mb-4">
-
                         <header class="card-header">
                             <div class="row gx-3">
-                              <div class="col-12 mb-4 d-flex justify-content-between">
+                              <div class="col-12 d-flex justify-content-between">
                                   <h4>Colors</h4>
                                   <a class="btn btn-md rounded font-sm" href="{{ route('seller.products.add_color', $product->id) }}">Add Color</a>
                               </div>
-                                <div class="col-lg-6 col-md-6 me-auto">
-                                    <input type="text" placeholder="Search..." class="form-control">
-                                </div>
-                                <div class="col-lg-2 col-6 col-md-3">
-                                    <select class="form-select">
-                                        <option>Show 20</option>
-                                        <option>Show 30</option>
-                                        <option>Show 40</option>
-                                    </select>
-                                </div>
                             </div>
                         </header> <!-- card-header end// -->
                         <div class="card-body">
@@ -219,85 +208,97 @@
                         </div>
                     </div> <!-- card end// -->
                 </div>
-                <!-- -->
+
                 <div class="col-lg-9">
                     <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between">
-                            <h4>Promotion</h4>
-                            <a class="btn btn-md rounded font-sm" href="{{ route('seller.products.add_promotion', $product->id) }}">Add Promotion</a>
-                        </div>
-                        <div class="card-body">
-                          @if($product->promotions)
-                            <div class="mb-4">
-                                <label for="product_name" class="form-label">Promo Name</label>
-                                <input type="text" placeholder="Type here" class="form-control" id="product_name" disabled value="{{ $product->promotions->name }}">
-                            </div>
+                        <form class="" action="" method="post">
+                          <div class="card-header d-flex justify-content-between">
+                              <h4>Rental</h4>
+                              @if($product->rentals)
+                                <div class="">
+                                  <button class="btn btn-md rounded font-sm mx-3" type="submit" name="submit">Save Changes</button>
+                                  <a href="#" class="btn btn-sm font-sm rounded btn-danger"><i class="material-icons md-delete_forever"></i></a>
+                                </div>
+                              @else
+                                <a class="btn btn-md rounded font-sm" href="{{ route('seller.products.add_rental', $product->id) }}">Add Rental</a>
+                              @endif
+                          </div>
+                          <div class="card-body">
+                            @if($product->rentals)
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                      <div class="mb-4">
+                                          <label class="form-label">Rental Period (in days)</label>
+                                          <div class="row gx-2">
+                                              <input placeholder="period" type="number" min="0" class="form-control" name="period" value="{{ $product->rentals->period }}">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                      <div class="mb-4">
+                                          <label class="form-label">Rental % on value</label>
+                                          <input placeholder="%" type="number" min="0" step=".01" class="form-control" name="percentage" value="{{ $product->rentals->percentage }}">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="mb-4">
+                                  <label class="form-label">Rental Policy</label>
+                                  <textarea placeholder="rental policy" class="form-control" rows="4" name="policy">{{ $product->rentals->policy }}</textarea>
+                              </div>
+                              @else
+                                <p>No Rental Added</p>
+                              @endif
+                          </div>
+                        </form>
+                    </div> <!-- card end// -->
+                </div>
+                <!-- -->
+
+                <div class="col-lg-9">
+                    <div class="card mb-4">
+                        <form class="" action="" method="post">
+                          <div class="card-header d-flex justify-content-between">
+                              <h4>Hire Purchase</h4>
+                              @if($product->hirepurchase)
+                                <div class="">
+                                  <button class="btn btn-md rounded font-sm mx-3" type="submit" name="submit">Save Changes</button>
+                                  <a href="#" class="btn btn-sm font-sm rounded btn-danger"><i class="material-icons md-delete_forever"></i></a>
+                                </div>
+                              @else
+                                <a class="btn btn-md rounded font-sm" href="{{ route('seller.products.add_hirepurchase', $product->id) }}">Add Hire Purchase</a>
+                              @endif
+                          </div>
+                          <div class="card-body">
+                            @if($product->hirepurchase)
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <label class="form-label">Ending Date</label>
+                                        <label class="form-label">HP Period (in days)</label>
                                         <div class="row gx-2">
-                                            <input placeholder="$" type="text" class="form-control" disabled value="{{ $product->promotions->date_end }}">
+                                            <input placeholder="period" type="number" min="0" class="form-control" name="period" value="{{ $product->hirepurchase->period }}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <label class="form-label">Feature Status</label>
-                                        @if($product->promotions->featured)
-                                          <input type="text" class="form-control" disabled value="Active">
-                                        @else
-                                          <input type="text" class="form-control" disabled value="In-Active">
-                                        @endif
+                                        <label class="form-label">HP % on value</label>
+                                        <input placeholder="%" type="number" min="0" step=".01" class="form-control" name="percentage" value="{{ $product->hirepurchase->percentage }}">
                                     </div>
                                 </div>
                             </div>
-                            @else
-                              <p>Promotion Details N/A</p>
-                            @endif
-                        </div>
+                            <div class="mb-4">
+                                <label class="form-label">HP Policy</label>
+                                <textarea placeholder="hire purchase policy" class="form-control" rows="4" name="policy">{{ $product->hirepurchase->policy }}</textarea>
+                            </div>
+                              @else
+                                <p>No Hire Purchase Added</p>
+                              @endif
+                          </div>
+                        </form>
                     </div> <!-- card end// -->
                 </div>
                 <!-- -->
-                <div class="col-lg-9">
-                    <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between">
-                            <h4>Rental</h4>
-                            <a class="btn btn-md rounded font-sm" href="{{ route('seller.products.add_rental', $product->id) }}">Add Rental</a>
-                        </div>
-                        <div class="card-body">
-                          @if($product->rentals)
-                            <div class="mb-4">
-                                <label for="product_name" class="form-label">Rental</label>
-                                <input type="text" placeholder="Type here" class="form-control" id="product_name" disabled value="{{ $product->rentals->name }}">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label">Description</label>
-                                <textarea placeholder="Type here" class="form-control" rows="4" disabled>{{ $product->rentals->description }}</textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-4">
-                                        <label class="form-label">Rental Period</label>
-                                        <div class="row gx-2">
-                                            <input placeholder="$" type="text" class="form-control" disabled value="{{ $product->rentals->period }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-4">
-                                        <label class="form-label">Daily Price</label>
-                                        <input placeholder="#" type="text" class="form-control" disabled value="{{ $product->rentals->price_per_day }}">
-                                    </div>
-                                </div>
-                            </div>
-                            @else
-                              <p>Rental Details N/A</p>
-                            @endif
-                        </div>
-                    </div> <!-- card end// -->
-                </div>
-                <!-- -->
+
                 <div class="col-lg-9">
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between">

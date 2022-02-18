@@ -9,31 +9,19 @@
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title"> {{ $category->name }} </h2>
-                    <p>Add, edit or delete a category</p>
                 </div>
                 <div>
-                    <a class="btn btn-danger" href="#">Delete Category</a>
+                  <a href="#" class="btn btn-sm font-sm rounded btn-danger">
+                      <i class="material-icons md-delete_forever"></i> Delete
+                  </a>
                 </div>
             </div>
             <div class="card">
-                <header class="card-header">
-                    <div class="row gx-3">
-                        <div class="col-lg-4 col-md-6 me-auto">
-                            <input type="text" placeholder="Search..." class="form-control" />
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-6">
-                          <div>
-                              <a href="{{ route('admin.categories.add_collection', $category->id) }}" class="btn btn-primary">Add New</a>
-                          </div>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-6">
-                            <select class="form-select">
-                                <option>Show 20</option>
-                                <option>Show 30</option>
-                                <option>Show 40</option>
-                            </select>
-                        </div>
-                    </div>
+                <header class="card-header d-flex justify-content-between">
+                  <h4 class="card-title">Edit or delete a category</h4>
+                  <div>
+                      <a href="{{ route('admin.categories.add_collection', $category->id) }}" class="btn btn-primary"><i class="material-icons md-plus"></i> Add new</a>
+                  </div>
                 </header>
                 <div class="card-body">
                     <div class="row">
@@ -45,7 +33,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#ID</th>
                                             <th>Name</th>
                                             <th>Products</th>
                                             <th>Slug</th>
@@ -62,14 +50,9 @@
                                             <td>/{{ $collection->slug }}</td>
                                             <td>{{ $collection->created_at->diffForHumans() }}</td>
                                             <td class="text-end">
-                                                <div class="dropdown">
-                                                    <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">View detail</a>
-                                                        <a class="dropdown-item" href="#">Edit info</a>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div> <!-- dropdown //end -->
+                                              <a href="" class="btn btn-sm font-sm rounded btn-brand">
+                                                  <i class="material-icons md-info"></i> Details
+                                              </a>
                                             </td>
                                         </tr>
                                         @endforeach

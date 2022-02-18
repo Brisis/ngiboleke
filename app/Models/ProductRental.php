@@ -10,10 +10,9 @@ class ProductRental extends Model
     use HasFactory;
 
     protected $fillable = [
-      'name',
-      'description',
       'period',
-      'price_per_day'
+      'percentage',
+      'policy',
     ];
 
     public function product()

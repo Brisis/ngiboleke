@@ -9,7 +9,6 @@
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Drafted Products</h2>
-                    <p>Ngiboleke Products</p>
                 </div>
                 <div>
                     <a href="{{ route('admin.products.products') }}" class="btn btn-primary btn-sm rounded">Active Products</a>
@@ -17,54 +16,51 @@
             </div>
             <div class="card mb-4">
                 <header class="card-header">
-                    <div class="row gx-3">
-                        <div class="col-lg-4 col-md-6 me-auto">
-                            <input type="text" placeholder="Search..." class="form-control">
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>All category</option>
-                                <option>Electronics</option>
-                                <option>Clothings</option>
-                                <option>Something else</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-6 col-md-3">
-                            <select class="form-select">
-                                <option>Latest added</option>
-                                <option>Cheap first</option>
-                                <option>Most viewed</option>
-                            </select>
-                        </div>
-                    </div>
+                    <h4 class="card-title">Ngiboleke Products</h4>
                 </header> <!-- card-header end// -->
                 <div class="card-body">
-                    <div class="row gx-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5">
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>#ID</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Price</th>
+                                  <th scope="col">Stock</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Date Created</th>
+                                  <th scope="col" class="text-end"> Action </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach($products as $product)
+                              <tr>
+                                  <td>{{ $product->id }}</td>
+                                  <td><b>{{ $product->name }}</b></td>
+                                  <td>${{ $product->price }}</td>
+                                  <td>{{ $product->stock }}</td>
+                                  <td>
+                                    @if($product->is_draft)
+                                      <span class="badge rounded-pill alert-warning">Drafted</span>
+                                    @else
+                                      <span class="badge rounded-pill alert-success">Published</span>
+                                    @endif
+                                  </td>
+                                  <td>{{ $product->created_at->diffForHumans() }}</td>
+                                  <td class="text-end">
+                                      <a href="{{ route('admin.products.product', $product->id) }}" class="btn btn-sm font-sm rounded btn-brand">
+                                          <i class="material-icons md-info"></i> Details
+                                      </a>
+                                      <a href="{{ route('product', $product->slug) }}" target="_blank" class="btn btn-sm font-sm btn-light rounded">
+                                          <i class="material-icons md-launch"></i> View Live
+                                      </a>
+                                  </td>
+                              </tr>
+                              @endforeach
+                          </tbody>
+                      </table>
+                  </div> <!-- table-responsive //end -->
 
-                        @foreach($products as $product)
-                        <div class="col">
-                            <div class="card card-product-grid">
-                                <a href="{{ route('admin.products.product', $product->id) }}" class="img-wrap">
-                                  @if(!$product->image)
-                                    <img src="{{ asset('static/img/ph.jpg') }}" alt="Product">
-                                  @else
-                                  <img src="{{ asset($product->image) }}" alt="Product">
-                                  @endif
-                                </a>
-                                <div class="info-wrap">
-                                    <a href="{{ route('admin.products.product', $product->id) }}" class="title text-truncate">{{ $product->name }}</a>
-                                    <div class="price mb-2">${{ $product->price }}</div> <!-- price.// -->
-                                    <a href="{{ route('admin.products.product', $product->id) }}" class="btn btn-sm font-sm rounded btn-brand">
-                                        <i class="material-icons md-info"></i> Details
-                                    </a>
-                                    <a href="{{ route('product', $product->slug) }}" target="_blank" class="btn btn-sm font-sm btn-light rounded">
-                                        <i class="material-icons md-launch"></i> View Live
-                                    </a>
-                                </div>
-                            </div> <!-- card-product  end// -->
-                        </div> <!-- col.// -->
-                        @endforeach
-                    </div> <!-- row.// -->
                 </div> <!-- card-body end// -->
             </div> <!-- card end// -->
             <div class="pagination-area mt-30 mb-50">

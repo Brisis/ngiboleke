@@ -10,8 +10,9 @@
     </div>
     <!-- Search Form-->
     <div class="top-search-form">
-      <form action="" method="">
-        <input class="form-control" type="search" placeholder="Enter your keyword">
+      <form action="{{ route('search') }}" method="post">
+        @csrf
+        <input class="form-control" type="search" name="search" placeholder="Enter your keyword">
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>

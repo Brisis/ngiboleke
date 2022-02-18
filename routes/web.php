@@ -30,26 +30,31 @@ use App\Http\Controllers\Front\Account\OrdersController;
 use App\Http\Controllers\Front\Account\HistoryController;
 use App\Http\Controllers\Front\Account\NotificationController;
 
-use App\Http\Controllers\SearchController;
-
 /* Seller Controllers */
 use App\Http\Controllers\Seller\SellerDashboardController;
 use App\Http\Controllers\Seller\Customer\SellerCustomerController;
 use App\Http\Controllers\Seller\Order\SellerOrderController;
 use App\Http\Controllers\Seller\Review\SellerReviewController;
 use App\Http\Controllers\Seller\Product\SellerProductController;
+use App\Http\Controllers\Seller\Settings\SellerSettingsController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\AdminDashboardController;
 
-//Location Controller
-use App\Http\Controllers\Admin\Location\AdminLocationController;
+//Order Controller
+use App\Http\Controllers\Admin\Order\AdminOrderController;
 
 //Category Controller
 use App\Http\Controllers\Admin\Category\AdminCategoryController;
 
 //Verification Controller
 use App\Http\Controllers\Admin\Verifications\AdminVerificationsController;
+
+//Seller Controller
+use App\Http\Controllers\Admin\Seller\AdminSellerController;
+
+//Statistics Controller
+use App\Http\Controllers\Admin\Statistics\AdminStatisticsController;
 
 //Product Controller
 use App\Http\Controllers\Admin\Product\AdminProductController;
@@ -75,6 +80,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
+
+Route::get('/forgot', [LoginController::class, 'forgot'])->name('forgot');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
@@ -105,8 +112,8 @@ Route::get('/categories/{category:slug}', [CategoryController::class, 'category'
 Route::get('/collections', [CategoryController::class, 'collections'])->name('collections');
 Route::get('/collections/{collection:slug}', [CategoryController::class, 'collection'])->name('collection');
 
-//Search Controllers
-Route::get('/search', [SearchController::class, 'index'])->name('search');
+//Search Products
+Route::post('/search', [ProductController::class, 'search'])->name('search');
 
 //Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
@@ -117,6 +124,7 @@ Route::post('remove-all-from-cart', [CartController::class, 'removeAll'])->name(
 
 //Checkout
 Route::get('/checkout', [PaymentController::class, 'index'])->name('checkout');
+Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 Route::get('/paid', [PaymentController::class, 'paid'])->name('paid');
 
 //Website Information Controllers
@@ -144,12 +152,12 @@ Route::group(['middleware' => 'auth'], function ()
   ],
   function(){
       Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
-      Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+      // Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
       Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
       Route::get('/order', [OrdersController::class, 'order'])->name('order');
       //Route::get('/history', [HistoryController::class, 'index'])->name('history');
-      Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
-      Route::get('/notification', [NotificationController::class, 'notification'])->name('notification');
+      // Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+      // Route::get('/notification', [NotificationController::class, 'notification'])->name('notification');
 
       //Account Settings
       Route::get('/settings', [ProfileController::class, 'settings'])->name('settings');
@@ -175,7 +183,8 @@ Route::group(['middleware' => 'auth'], function ()
   //Seller Controllers
   Route::group([
     'prefix' => 'seller',
-    'as' => 'seller.'
+    'as' => 'seller.',
+    'middleware' => 'is_seller'
   ],
   function(){
       Route::get('/dashboard', [SellerDashboardController::class,'index'])->name("dashboard");
@@ -185,9 +194,7 @@ Route::group(['middleware' => 'auth'], function ()
 
       Route::get('/unverified', [SellerDashboardController::class,'unverified'])->name("unverified");
 
-      Route::get('/profile', [SellerDashboardController::class,'profile'])->name("profile");
-
-      Route::get('/edit', [SellerDashboardController::class,'edit'])->name("edit");
+      Route::get('/edit', [SellerDashboardController::class,'profile'])->name("edit");
       Route::post('/edit', [SellerDashboardController::class,'storeChanges']);
 
       Route::get('/edit_picture', [SellerDashboardController::class,'edit_picture'])->name("edit_picture");
@@ -218,12 +225,6 @@ Route::group(['middleware' => 'auth'], function ()
           Route::get('/{product}/add_image', [SellerProductController::class,'addImages'])->name("add_image");
           Route::post('/{product}/add_image', [SellerProductController::class,'storeImages']);
 
-          Route::get('/{product}/add_stock', [SellerProductController::class,'addStock'])->name("add_stock");
-          Route::post('/{product}/add_stock', [SellerProductController::class,'storeStock']);
-
-          Route::get('/{product}/add_discount', [SellerProductController::class,'addDiscount'])->name("add_discount");
-          Route::post('/{product}/add_discount', [SellerProductController::class,'storeDiscount']);
-
           Route::get('/{product}/add_color', [SellerProductController::class,'addColor'])->name("add_color");
           Route::post('/{product}/add_color', [SellerProductController::class,'storeColor']);
 
@@ -232,6 +233,9 @@ Route::group(['middleware' => 'auth'], function ()
 
           Route::get('/{product}/add_rental', [SellerProductController::class,'addRental'])->name("add_rental");
           Route::post('/{product}/add_rental', [SellerProductController::class,'storeRental']);
+
+          Route::get('/{product}/add_hirepurchase', [SellerProductController::class,'addHirePurchase'])->name("add_hirepurchase");
+          Route::post('/{product}/add_hirepurchase', [SellerProductController::class,'storeHirePurchase']);
         });
 
         Route::get('/customers', [SellerCustomerController::class,'index'])->name("customers");
@@ -243,7 +247,7 @@ Route::group(['middleware' => 'auth'], function ()
       });
 
 
-      Route::get('/settings', [SellerDashboardController::class,'settings'])->name("settings");
+      Route::get('/settings', [SellerSettingsController::class,'index'])->name("settings");
   });
 
   //Admin Controllers
@@ -255,11 +259,9 @@ Route::group(['middleware' => 'auth'], function ()
   function(){
       Route::get('/dashboard', [AdminDashboardController::class,'index'])->name("dashboard");
       Route::get('/users', [AdminDashboardController::class,'users'])->name("users");
-      Route::get('/orders', [AdminDashboardController::class,'orders'])->name("orders");
-      Route::get('/order', [AdminDashboardController::class,'order'])->name("order");
+
       Route::get('/login', [AdminDashboardController::class,'login'])->name("login");
       Route::get('/add-product', [AdminDashboardController::class,'addProduct'])->name("add_product");
-      Route::get('/brands', [AdminDashboardController::class,'brands'])->name("brands");
 
 
       //Admin Categories
@@ -342,12 +344,39 @@ Route::group(['middleware' => 'auth'], function ()
         Route::post('/add_rental', [AdminRentalController::class,'store']);
       });
 
+      //Admin Orders
+      Route::group([
+        'prefix' => 'orders',
+        'as' => 'orders.'
+      ],
+      function(){
+        //GET
+        Route::get('/', [AdminOrderController::class,'index'])->name("orders");
+        Route::get('/order', [AdminOrderController::class,'order'])->name("order");
+      });
+
+      //Admin Orders
+      Route::group([
+        'prefix' => 'sellers',
+        'as' => 'sellers.'
+      ],
+      function(){
+        //GET
+        Route::get('/', [AdminSellerController::class,'index'])->name("sellers");
+        Route::get('/seller/{merchant}', [AdminSellerController::class,'seller'])->name("seller");
+      });
+
+      //Admin Orders
+      Route::group([
+        'prefix' => 'statistics',
+        'as' => 'statistics.'
+      ],
+      function(){
+        //GET
+        Route::get('/', [AdminStatisticsController::class,'index'])->name("statistics");
+      });
+
       Route::get('/sales', [AdminSaleController::class,'index'])->name("sales");
-      Route::get('/reviews', [AdminDashboardController::class,'reviews'])->name("reviews");
-      Route::get('/sellers', [AdminDashboardController::class,'sellers'])->name("sellers");
-      Route::get('/seller', [AdminDashboardController::class,'seller'])->name("seller");
-      Route::get('/statistics', [AdminDashboardController::class,'settings'])->name("statistics");
       Route::get('/settings', [AdminDashboardController::class,'settings'])->name("settings");
-      Route::get('/transactions', [AdminDashboardController::class,'transactions'])->name("transactions");
   });
 });

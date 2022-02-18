@@ -17,9 +17,9 @@
                         <div class="col-xl col-lg flex-grow-0" style="flex-basis:230px;">
                             <div class="img-thumbnail shadow w-100 bg-white position-relative text-center" style="height:190px; width:200px; margin-top:-120px;background-image: url({{ asset($merchant->merchant_cover) }}); background-size: cover;background-repeat:no-repeat;">
                               @if($merchant->merchant_logo)
-                                <img src="{{ asset($merchant->merchant_logo) }}" class="center-xy img-fluid" alt="Logo Brand">
+                                <img src="{{ asset($merchant->merchant_logo) }}" class="center-xy img-fluid rounded-circle" alt="Logo Brand">
                               @else
-                                <img src="{{ asset('static/img/ph.jpg') }}" class="center-xy img-fluid" alt="Logo Brand">
+                                <img src="{{ asset('static/img/ph.jpg') }}" class="center-xy img-fluid rounded-circle" alt="Logo Brand">
                               @endif
                             </div>
                         </div> <!--  col.// -->
@@ -33,72 +33,86 @@
                         </div> <!--  col.// -->
                         @endif
                     </div> <!-- card-body.// -->
-                    <hr class="my-4">
-                    <div class="row g-4">
-                        <div class="col-md-12 col-lg-4 col-xl-2">
-                            <article class="box">
-                                <p class="mb-0 text-muted">Total Orders:</p>
-                                <h5 class="text-success">0</h5>
-                                <p class="mb-0 text-muted">Revenue:</p>
-                                <h5 class="text-success mb-0">$0.00</h5>
-                            </article>
-                        </div> <!--  col.// -->
-                        <div class="col-sm-6 col-lg-4 col-xl-5">
-                            <h6>Contacts</h6>
-                            <p>
-                                Manager: {{ auth()->user()->firstname }} {{ auth()->user()->lastname }} <br>
-                                Username: <a href="">@ {{ $merchant->username }}</a> <br>
-                                Phone: {{ $merchant->country_code }} {{ $merchant->phone }}
-                            </p>
-                        </div> <!--  col.// -->
-                        <div class="col-sm-6 col-lg-4 col-xl-5">
-                            <h6>Address</h6>
-                            <p>
-                                Country: {{ $merchant->country }} <br>
-                                City: {{ $merchant->city }} <br>
-                                Address: {{ $merchant->address }}
-                            </p>
-                        </div> <!--  col.// -->
-                    </div> <!--  row.// -->
                 </div> <!--  card-body.// -->
             </div> <!--  card.// -->
+
             <div class="card mb-4">
-                <div class="card-header">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <a class="btn btn-md rounded font-sm" href="{{ route('seller.edit_picture') }}">Edit Profile Image</a>
-                    </div>
-                    <div class="col-lg-4">
-                      <a class="btn btn-md rounded font-sm" href="{{ route('seller.edit_cover') }}">Edit Cover Image</a>
-                    </div>
-                    <div class="col-lg-4">
-                      <a class="btn btn-md rounded font-sm" href="{{ route('seller.edit') }}">Edit Merchant Info</a>
-                    </div>
+              <form action="{{ route('seller.edit')}}" method="post">
+                <div class="card-header d-flex justify-content-between">
+                  <h4>Merchant Info</h4>
+                  <button type="submit" class="btn btn-sm font-sm rounded btn-brand"><i class="material-icons md-save"></i>Save Changes</button>
+                </div>
+
+                  @csrf
+                  <div class="card-body">
+                      <div class="mb-4">
+                          <label for="name" class="form-label">Merchant Name</label>
+                          <input type="text" placeholder="Type here" class="form-control" id="name" name="name" value="{{ $merchant->name }}">
+                      </div>
+
+                      <div class="row">
+                          <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" placeholder="Type here" class="form-control" id="username" name="username" value="{{ $merchant->username }}">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="mb-4">
+                                  <label class="form-label">Phone Number</label>
+                                  <input placeholder="+1234567890" type="text" class="form-control" name="phone" value="{{ $merchant->phone }}">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="mb-4">
+                          <label for="name" class="form-label">Country (selected: {{ $merchant->country }})</label>
+                            @include('seller.partials.countries_m')
+                      </div>
+
+                      <div class="mb-4">
+                          <label for="city" class="form-label">City</label>
+                          <input type="text" placeholder="Type here" class="form-control" id="city" name="city" value="{{ $merchant->city }}">
+                      </div>
+
+                      <div class="mb-4">
+                          <label class="form-label">Merchant Street Address</label>
+                          <textarea placeholder="Type here" class="form-control" rows="4" name="address">{{ $merchant->address }}</textarea>
+                      </div>
+
+                      <div class="mb-4">
+                          <label for="video" class="form-label">Intro Video</label>
+                          <input type="text" placeholder="Paste Youtube Url" class="form-control" id="video" name="video" value="{{ $merchant->video }}">
+                      </div>
+                      <div class="mb-4">
+                          <label class="form-label">About Merchant</label>
+                          <textarea placeholder="Type here" class="form-control" rows="4" name="description">{{ $merchant->description }}</textarea>
+                      </div>
                   </div>
+                </form>
+            </div> <!--  card.// -->
+
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between">
+                  <h4>Profile Image</h4>
+                  <a href="{{ route('seller.edit_picture') }}" class="btn btn-sm font-sm rounded btn-brand"><i class="material-icons md-edit"></i></a>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <h5 class="card-title">About Information</h5>
-                        <div class="description">
-                          {{ $merchant->description }}
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="col-lg-12">
-                        <h5 class="card-title">Intro Video</h5>
-                        @if($merchant->video)
-                          <iframe src="{{ $merchant->video }}" width="100%" height="250px"></iframe>
-                        @endif
-                      </div>
-                      <hr>
-                      <div class="col-lg-12">
-                        <h5 class="card-title">Map Location</h5>
-                        {{ $merchant->map_iframe }}
-                      </div>
-                    </div> <!-- row.// -->
+
                 </div> <!--  card-body.// -->
             </div> <!--  card.// -->
+
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between">
+                  <h4>Cover Image</h4>
+                  <a href="{{ route('seller.edit_cover') }}" class="btn btn-sm font-sm rounded btn-brand"><i class="material-icons md-edit"></i></a>
+                </div>
+                <div class="card-body">
+
+                </div> <!--  card-body.// -->
+            </div> <!--  card.// -->
+
+
         </section> <!-- content-main end// -->
         @include('seller.partials.footer')
     </main>

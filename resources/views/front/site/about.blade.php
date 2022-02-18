@@ -25,7 +25,7 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <div class="about-content-wrap"><img class="mb-3" src="{{ asset('static/img/bg-img/12.png') }}" alt="">
+            <div class="about-content-wrap">
               <h5>We are here for your all needs. Let's together safer the world. Stay at home, stay safe.</h5>
               <p>A versatile e-commerce shop template. It is very nicely designed with modern features &amp; coded with the latest technology.</p>
               <p>It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.</p>
@@ -35,10 +35,6 @@
                 <li class="ps-2"><i class="lni lni-checkmark-circle me-1"></i>Coded with the latest technology</li>
               </ul>
               <p>It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.</p>
-              <div class="row">
-                <div class="col-6"><img class="mb-3 rounded" src="{{ asset('static/img/bg-img/12.jpg') }}" alt=""></div>
-                <div class="col-6"><img class="mb-3 rounded" src="{{ asset('static/img/bg-img/16.jpg') }}" alt=""></div>
-              </div>
               <p>A versatile e-commerce shop template. It is very nicely designed with modern features &amp; coded with the latest technology.</p>
               <p>It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.</p>
               <h6>Authors Help</h6>

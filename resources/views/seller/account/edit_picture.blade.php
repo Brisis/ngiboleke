@@ -10,7 +10,7 @@
               @csrf
               <div class="row">
                   <div class="content-header">
-                      <a href="{{ route('seller.profile') }}"><i class="material-icons md-arrow_back"></i> Go back </a>
+                      <a href="{{ route('seller.edit') }}"><i class="material-icons md-arrow_back"></i> Go back </a>
                   </div>
                   <div class="col-9">
                       <div class="content-header">
