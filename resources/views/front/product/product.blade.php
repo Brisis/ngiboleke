@@ -37,11 +37,13 @@
       <img class="rounded-3" src="{{ asset('static/img/product/3.png') }}" alt="">
     </a>-->
     <!-- Video Button-->
+    @if($product->video)
     <a class="video-btn shadow-sm" id="singleProductVideoBtn" href="{{ $product->video }}">
       <svg class="bi bi-play text-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
         <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"></path>
       </svg>
     </a>
+    @endif
   </div>
   <div class="product-description pb-3">
     <!-- Product Title & Meta Data-->
@@ -56,9 +58,15 @@
             @endif
           </p>
         </div>
-        <div class="">
-          <a href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart"  onclick="event.preventDefault();" v-on:click="addToCart('{{ $product->id }}')" class="btn btn-success showAddToCart" title="Add To Cart"><i class="lni lni-cart"></i> Add to cart</a>
-        </div>
+        @if($product->stock == 1)
+          <div>
+            <button class="btn btn-danger" title="Property Out of Stock"><i class="lni lni-cart"></i> Out of Stock</buttom>
+          </div>
+        @else
+          <div>
+            <a href="javascript:void()" data-bs-toggle="modal" data-bs-target="#addedToCart"  onclick="event.preventDefault();" v-on:click="addToCart('{{ $product->id }}')" class="btn btn-success showAddToCart" title="Add To Cart"><i class="lni lni-cart"></i> Add to cart</a>
+          </div>
+        @endif
       </div>
       <!-- Ratings-->
       @if($product->reviews)
@@ -79,17 +87,18 @@
       </div>
       @endif
     </div>
+
     <!-- Flash Sale Panel-->
-    <div class="flash-sale-panel bg-white mb-3 py-3">
+    <!-- <div class="flash-sale-panel bg-white mb-3 py-3">
       <div class="container">
-        <!-- Sales Offer Content-->
+        <!-- Sales Offer Content--
         <div class="sales-offer-content d-flex align-items-end justify-content-between">
-          <!-- Sales End-->
+          <!-- Sales End--
           <div class="sales-end">
             @if($product->promotions)
             <p class="mb-1 font-weight-bold"><i class="lni lni-bolt"></i> Flash sale end in</p>
 
-            <!-- Please use event time this format: YYYY/MM/DD hh:mm:ss-->
+            <!-- Please use event time this format: YYYY/MM/DD hh:mm:ss--
             <ul class="sales-end-timer ps-0 d-flex align-items-center" data-countdown="{{ $product->promotions->date_end }} 00:00:00">
               <li><span class="days">0</span>d</li>
               <li><span class="hours">0</span>h</li>
@@ -100,7 +109,7 @@
               <p>No promotions.</p>
             @endif
           </div>
-          <!-- Sales Volume-->
+          <!-- Sales Volume--
           <div class="sales-volume text-end">
             <p class="mb-1 font-weight-bold">82% Sold Out</p>
             <div class="progress" style="height: 6px;">
@@ -109,7 +118,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+
     <!-- Selection Panel-->
     <div class="selection-panel bg-white mb-3 py-3">
       <div class="container d-flex align-items-center justify-content-between">
@@ -145,6 +155,8 @@
         </form>
       </div>
     </div> -->
+
+    @if($product->video)
     <!-- Product Specification-->
     <div class="p-specification bg-white mb-3 py-3">
       <div class="container">
@@ -154,6 +166,9 @@
         </div>
       </div>
     </div>
+    @endif
+
+    @if($product->video)
     <!-- Product Video -->
     <div class="bg-img" style="background-image: url({{ asset('static/img/interior.jpg') }})">
       <div class="container">
@@ -164,12 +179,15 @@
         </div>
       </div>
     </div>
+    @endif
     <div class="pb-3"></div>
+
+    @if($related->isNotEmpty())
     <!-- Related Products Slides-->
     <div class="related-product-wrapper py-3 mb-3">
       <div class="container">
         <div class="section-heading d-flex align-items-center justify-content-between">
-          <h6>Related Products</h6><a class="btn" href="shop-grid.html">View All</a>
+          <h6>Related Products</h6><a class="btn" href="{{ route('collection', $product->collection->slug) }}">View All</a>
         </div>
         <div class="related-product-slide owl-carousel">
           @foreach($related as $r_product)
@@ -221,6 +239,7 @@
         </div>
       </div>
     </div>
+    @endif
 
     <!-- Rating & Review Wrapper -->
     <div class="rating-and-review-wrapper bg-white py-3 mb-3">

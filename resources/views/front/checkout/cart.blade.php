@@ -34,15 +34,21 @@
 
                   @foreach(session('cart') as $id => $details)
                     <?php $total += $details['price'] * $details['quantity'] ?>
-                    <tr data-id="{{ $id }}">
-                      <th scope="row">
+                    <tr class="row" data-id="{{ $id }}">
+                      <th class="col-3 col-md-3" scope="row">
                         <a class="remove-product remove-from-cart" href="javascript:void()" title="Delete Product" data-id="{{ $id }}"><i class="lni lni-trash"></i></a>
                       </th>
-                      <td><img class="rounded" src="{{ $details['image'] }}" alt=""></td>
-                      <td><a href="{{ route('product', $details['slug']) }}">{{ $details['name'] }}<span>$@money($details['price']) × {{ $details['quantity'] }}</span></a></td>
-                      <td class="d-flex justify-content-between">
+                      <td class="col-3 col-md-3">
+                        <a href="{{ route('product', $details['slug']) }}">
+                          <img class="rounded" src="{{ $details['image'] }}" alt="">
+                        </a>
+                      </td>
+                      <td class="col-6 col-md-3">
+                        <a href="{{ route('product', $details['slug']) }}">{{ $details['name'] }}<span>$@money($details['price']) × {{ $details['quantity'] }}</span></a>
+                      </td>
+                      <td class="d-flex justify-content-between col-12 col-md-3">
                         <div class="quantity">
-                          <input class="qty-text quantityf" type="number" min="1" step="1" value="{{ $details['quantity'] }}">
+                          <input class="qty-text quantityf" type="number" min="1" step="1" value="{{ $details['quantity'] }}" style="width:100px;">
                         </div>
                         <div class="quantity">
                           <button class="btn btn-success btn-sm update-cart" data-id="{{ $id }}">Update</button>
@@ -51,8 +57,8 @@
                     </tr>
                     @endforeach
 
-                  <tr>
-                    <td>
+                  <tr class="row">
+                    <td class="col-12 col-md-12">
                       <form class="" action="{{ route('remove_all') }}" method="post">
                         @csrf
                         <button class="btn btn-danger">Empty Cart</button>

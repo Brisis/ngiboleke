@@ -104,7 +104,7 @@ Route::group(['middleware' => 'is_customer_verified'], function(){
 });
 
 Route::get('/property/{product:slug}', [ProductController::class, 'index'])->name('product');
-Route::post('/add_review/{product}', [ProductController::class, 'addReview'])->name('add_review');
+Route::post('/add_review/{product}', [ProductController::class, 'addReview'])->middleware('auth')->name('add_review');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'category'])->name('category');
@@ -123,9 +123,11 @@ Route::delete('remove-from-cart', [CartController::class, 'remove']);
 Route::post('remove-all-from-cart', [CartController::class, 'removeAll'])->name('remove_all');
 
 //Checkout
-Route::get('/checkout', [PaymentController::class, 'index'])->name('checkout');
-Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
-Route::get('/paid', [PaymentController::class, 'paid'])->name('paid');
+Route::group(['middleware' => 'auth'], function(){
+  Route::get('/checkout', [PaymentController::class, 'index'])->name('checkout');
+  Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
+  Route::get('/paid', [PaymentController::class, 'paid'])->name('paid');
+});
 
 //Website Information Controllers
 Route::get('/terms-and-services', [TermsController::class, 'index'])->name('terms');
