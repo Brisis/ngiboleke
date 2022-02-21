@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class RegisterController extends Controller
 {
@@ -17,7 +19,7 @@ class RegisterController extends Controller
      */
    public function __construct()
    {
-     $this->middleware(['guest']);
+     //$this->middleware(['guest']);
    }
 
     public function index()
@@ -39,7 +41,7 @@ class RegisterController extends Controller
         'password' => 'required|confirmed'
       ]);
 
-      User::create([
+      $user = User::create([
         'fullname' => $request->fullname,
         'email' => $request->email,
         'password' => Hash::make($request->password)
@@ -49,27 +51,29 @@ class RegisterController extends Controller
         return back()->with('status', 'Invalid Login Details');
       }
 
-      if (auth()->user()->is_admin) {
-        return redirect()->route('admin.dashboard');
-      }
-      elseif (auth()->user()->is_seller) {
-        return redirect()->route('seller.dashboard');
-      }
-      else {
-        return redirect()->route('account.dashboard');
-      }
+      // event(new Registered($user));
+      // return redirect()->route('verification.notice');
+      return redirect()->route('account.dashboard');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function verify()
     {
-        //
+      return view('auth.verify-email');
+    }
+
+    public function verification(EmailVerificationRequest $request)
+    {
+      $request->fulfill();
+
+      return redirect()->route('account.dashboard');
+    }
+
+
+    public function resend(Request $request)
+    {
+      $request->user()->sendEmailVerificationNotification();
+
+      return back()->with('message', 'Verification link sent!');
     }
 
 }

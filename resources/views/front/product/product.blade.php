@@ -48,6 +48,7 @@
   <div class="product-description pb-3">
     <!-- Product Title & Meta Data-->
     <div class="product-title-meta-data bg-white mb-3 py-3">
+
       <div class="container d-flex justify-content-between">
         <div class="p-title-price">
           <h6 class="mb-1">{{ $product->name }}</h6>
@@ -120,6 +121,7 @@
       </div>
     </div> -->
 
+@if($product->colors->isNotEmpty())
     <!-- Selection Panel-->
     <div class="selection-panel bg-white mb-3 py-3">
       <div class="container d-flex align-items-center justify-content-between">
@@ -142,6 +144,8 @@
         </div>
       </div>
     </div>
+@endif
+
     <!-- Add To Cart-->
     <!-- <div class="cart-form-wrapper bg-white mb-3 py-3">
       <div class="container">

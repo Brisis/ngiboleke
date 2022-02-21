@@ -75,13 +75,22 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/page-not-found', [HomeController::class, 'notFound'])->name('404');
 
 //Authentication
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('/email/verify', [RegisterController::class, 'verify'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verification'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [RegisterController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::get('/forgot', [LoginController::class, 'forgot'])->name('forgot');
+Route::get('/forgot-password', [LoginController::class, 'forgot'])->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [LoginController::class, 'forgotPost'])->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', [LoginController::class, 'reset'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [LoginController::class, 'resetPassword'])->middleware('guest')->name('password.update');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
@@ -150,7 +159,7 @@ Route::group(['middleware' => 'auth'], function ()
   //Account Controllers
   Route::group([
     'prefix' => 'account',
-    'as' => 'account.'
+    'as' => 'account.',
   ],
   function(){
       Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
